@@ -14,7 +14,8 @@ body {
   display: flex;
   flex-direction: column;
   background-color: #212121;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 h1,
@@ -57,6 +58,7 @@ h6 {
 }
 
 #wrapper-header-employer {
+  margin-top: 2rem;
   padding: 1rem;
   background: white;
   margin-bottom: 1rem;
@@ -87,7 +89,6 @@ h6 {
   min-height: 100%;
   margin-right: -100px;
   transition: margin-right 0.5s ease-in-out;
-  filter: grayscale();
   box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.5);
 }
 
@@ -149,6 +150,7 @@ a {
     background-position: 0 -80px;
     margin-right: 0;
   }
+
   #wrapper-header-content {
     width: 100%;
   }
@@ -158,6 +160,6 @@ a {
   }
 
   body {
-    overflow: auto;
+    overflow-y: auto;
   }
 }

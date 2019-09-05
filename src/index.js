@@ -136,7 +136,7 @@ const init = () => {
     let line = new Line(
       geometry,
       new LineBasicMaterial({
-        color: new Color(0xffffff),
+        color: new Color(0xf91f78),
         linewidth: 4
       })
     );
