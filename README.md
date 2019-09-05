@@ -1,5 +1,7 @@
 # jakke.fi
-My light personal website. Has webpack for some simple js/css compilation. Uses THREE.js for animating.
+My light personal website. Has webpack for some simple js/css compilation. Uses THREE.js for animating. 
+
+[See it in action](https://jakke.fi)
 
 Development
 
