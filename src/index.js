@@ -15,6 +15,7 @@ let t = 0.0;
 
 let scene, camera, renderer;
 let geometry;
+let multiplier;
 
 let edges = [];
 let vertexCoords = [];
@@ -45,17 +46,24 @@ const path = (p1, p2, p3, p4, i) => {
   return vec;
 };
 
-const resize = () => {
+const setSize = () => {
+  if (window.innerWidth > 600) {
+    multiplier = 5;
+  } else {
+    multiplier = 3;
+  }
+
   camera = new OrthographicCamera(
-    window.innerWidth / -4,
-    window.innerWidth / 4,
-    window.innerHeight / 4,
-    window.innerHeight / -4,
+    (window.innerWidth / multiplier) * -1,
+    window.innerWidth / multiplier,
+    window.innerHeight / multiplier,
+    (window.innerHeight / multiplier) * -1,
     1,
     1000
   );
   camera.position.set(200, -100, -300);
   camera.lookAt(new Vector3(0, 0, 0));
+
   renderer.setSize(window.innerWidth, window.innerHeight);
 };
 
@@ -115,19 +123,10 @@ const init = () => {
   ];
 
   scene = new Scene();
-  camera = new OrthographicCamera(
-    window.innerWidth / -4,
-    window.innerWidth / 4,
-    window.innerHeight / 4,
-    window.innerHeight / -4,
-    1,
-    1000
-  );
-  camera.position.set(200, -100, -300);
-  camera.lookAt(new Vector3(0, 0, 0));
-
   renderer = new WebGLRenderer({ alpha: true, antialias: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  setSize();
+
   document.getElementById("hypercube").appendChild(renderer.domElement);
 
   vertexJoins.forEach((vertexJoin, i) => {
@@ -288,4 +287,4 @@ window.addEventListener(
   false
 );
 
-window.addEventListener("resize", resize);
+window.addEventListener("resize", setSize);

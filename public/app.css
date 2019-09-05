@@ -143,11 +143,10 @@ a {
   }
   #wrapper-header-face {
     width: 100%;
-    min-height: 50%;
+    min-height: auto;
+    min-height: initial;
+    height: 420px;
     background-position: 0 -80px;
-    margin-right: 0;
-  }
-  #wrapper-header-face {
     margin-right: 0;
   }
   #wrapper-header-content {
