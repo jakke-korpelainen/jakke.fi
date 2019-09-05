@@ -8,6 +8,7 @@ My light personal website. Has webpack for some simple js/css compilation. Uses 
 ---
 
 Hypercube animation based on this:
+
 https://github.com/transcranial/hypercube/blob/master/js/hypercube.js
 
 ---
