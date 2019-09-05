@@ -14,6 +14,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: #212121;
+  overflow: hidden;
 }
 
 h1,
@@ -155,5 +156,9 @@ a {
   #hypercube {
     min-height: 100vh;
     position: static;
+  }
+
+  body {
+    overflow: auto;
   }
 }
