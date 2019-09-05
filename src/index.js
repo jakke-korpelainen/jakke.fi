@@ -1,29 +1,64 @@
-import {
-  Scene,
-  Geometry,
-  Vector3,
-  OrthographicCamera,
-  Line,
-  LineBasicMaterial,
-  Color,
-  WebGLRenderer
-} from "three";
+import * as THREE from "three";
 
 ("use strict");
 
 let t = 0.0;
 
-let scene, camera, renderer;
+const mouse = new THREE.Vector2();
+const target = new THREE.Vector2();
+const windowHalf = new THREE.Vector2(
+  window.innerWidth / 2,
+  window.innerHeight / 2
+);
+
+let scene;
+let camera;
+let renderer;
 let geometry;
-let multiplier;
+let group;
 
 let edges = [];
 let vertexCoords = [];
 let vertexCoords2 = [];
 let vertexJoins = [];
 
+const onResize = () => {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  windowHalf.set(width / 2, height / 2);
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(width, height);
+};
+
+const onMouseMove = event => {
+  const x = event.clientX - windowHalf.x;
+  const y = event.clientY * 1.2 - windowHalf.x;
+
+  if (y > 200) {
+    mouse.y = 200;
+  } else if (y < -200) {
+    mouse.y = -200;
+  } else {
+    mouse.y = y;
+  }
+
+  if (x > 200) {
+    mouse.x = 200;
+  } else if (x < -200) {
+    mouse.x = -200;
+  } else {
+    mouse.x = x;
+  }
+};
+
+const onMouseWheel = event => {
+  camera.position.z += event.deltaY * 0.1; // move camera along z-axis
+};
+
 const path = (p1, p2, p3, p4, i) => {
-  let vec = new Vector3(0, 0, 0);
+  let vec = new THREE.Vector3(0, 0, 0);
 
   if (i >= 0 && i < 0.25) {
     vec.x = p4.x + (p1.x - p4.x) * i * 4;
@@ -46,44 +81,23 @@ const path = (p1, p2, p3, p4, i) => {
   return vec;
 };
 
-const setSize = () => {
-  if (window.innerWidth > 600) {
-    multiplier = 5;
-  } else {
-    multiplier = 3;
-  }
-
-  camera = new OrthographicCamera(
-    (window.innerWidth / multiplier) * -1,
-    window.innerWidth / multiplier,
-    window.innerHeight / multiplier,
-    (window.innerHeight / multiplier) * -1,
-    1,
-    1000
-  );
-  camera.position.set(200, -100, -300);
-  camera.lookAt(new Vector3(0, 0, 0));
-
-  renderer.setSize(window.innerWidth, window.innerHeight);
-};
-
 const init = () => {
-  vertexCoords[0] = new Vector3(-50, -50, -50);
-  vertexCoords[1] = new Vector3(50, -50, -50);
-  vertexCoords[2] = new Vector3(50, 50, -50);
-  vertexCoords[3] = new Vector3(-50, 50, -50);
-  vertexCoords[4] = new Vector3(-50, -50, 50);
-  vertexCoords[5] = new Vector3(50, -50, 50);
-  vertexCoords[6] = new Vector3(50, 50, 50);
-  vertexCoords[7] = new Vector3(-50, 50, 50);
-  vertexCoords[8] = new Vector3(-100, -100, -100);
-  vertexCoords[9] = new Vector3(100, -100, -100);
-  vertexCoords[10] = new Vector3(100, 100, -100);
-  vertexCoords[11] = new Vector3(-100, 100, -100);
-  vertexCoords[12] = new Vector3(-100, -100, 100);
-  vertexCoords[13] = new Vector3(100, -100, 100);
-  vertexCoords[14] = new Vector3(100, 100, 100);
-  vertexCoords[15] = new Vector3(-100, 100, 100);
+  vertexCoords[0] = new THREE.Vector3(-50, -50, -50);
+  vertexCoords[1] = new THREE.Vector3(50, -50, -50);
+  vertexCoords[2] = new THREE.Vector3(50, 50, -50);
+  vertexCoords[3] = new THREE.Vector3(-50, 50, -50);
+  vertexCoords[4] = new THREE.Vector3(-50, -50, 50);
+  vertexCoords[5] = new THREE.Vector3(50, -50, 50);
+  vertexCoords[6] = new THREE.Vector3(50, 50, 50);
+  vertexCoords[7] = new THREE.Vector3(-50, 50, 50);
+  vertexCoords[8] = new THREE.Vector3(-100, -100, -100);
+  vertexCoords[9] = new THREE.Vector3(100, -100, -100);
+  vertexCoords[10] = new THREE.Vector3(100, 100, -100);
+  vertexCoords[11] = new THREE.Vector3(-100, 100, -100);
+  vertexCoords[12] = new THREE.Vector3(-100, -100, 100);
+  vertexCoords[13] = new THREE.Vector3(100, -100, 100);
+  vertexCoords[14] = new THREE.Vector3(100, 100, 100);
+  vertexCoords[15] = new THREE.Vector3(-100, 100, 100);
 
   vertexJoins = [
     [0, 1],
@@ -122,30 +136,54 @@ const init = () => {
     [15, 12]
   ];
 
-  scene = new Scene();
-  renderer = new WebGLRenderer({ alpha: true, antialias: true });
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x232323);
 
-  setSize();
+  renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(window.innerWidth, window.innerHeight);
 
-  document.getElementById("hypercube").appendChild(renderer.domElement);
+  // camera
+
+  camera = new THREE.PerspectiveCamera(
+    45,
+    window.innerWidth / window.innerHeight,
+    1,
+    1000
+  );
+  camera.position.y = 0;
+  camera.position.x = 0;
+  camera.position.z = 250;
+  camera.aspect = window.innerWidth / window.innerHeight;
+
+  group = new THREE.Group();
 
   vertexJoins.forEach((vertexJoin, i) => {
-    geometry = new Geometry();
+    geometry = new THREE.Geometry();
     geometry.vertices.push(vertexCoords[vertexJoin[0]]);
     geometry.vertices.push(vertexCoords[vertexJoin[1]]);
-    let line = new Line(
+
+    let line = new THREE.Line(
       geometry,
-      new LineBasicMaterial({
-        color: new Color(0xf91f78),
-        linewidth: 4
+      new THREE.LineBasicMaterial({
+        color: new THREE.Color(0xf91f78),
+        linewidth: 1
       })
     );
-    scene.add(line);
+
+    group.add(line);
     edges[i] = line;
   });
+
+  scene.add(group);
+  document.getElementById("hypercube").appendChild(renderer.domElement);
+
+  window.addEventListener("resize", onResize, false);
+  window.addEventListener("mousemove", onMouseMove, false);
+  window.addEventListener("wheel", onMouseWheel, false);
 };
 
-const render = () => {
+const animate = () => {
   t = (t + 0.002) % 1;
 
   vertexCoords2[0] = path(
@@ -264,7 +302,7 @@ const render = () => {
     t
   );
 
-  requestAnimationFrame(render);
+  requestAnimationFrame(animate);
 
   edges.forEach((edge, i) => {
     edge.geometry.vertices[0] = vertexCoords2[vertexJoins[i][0]];
@@ -275,6 +313,12 @@ const render = () => {
     edge.geometry.verticesNeedUpdate = true;
   });
 
+  target.x = (1 - mouse.x) * 0.002;
+  target.y = (1 - mouse.y) * 0.002;
+
+  camera.rotation.x += 0.05 * (target.y - camera.rotation.x);
+  camera.rotation.y += 0.05 * (target.x - camera.rotation.y);
+
   renderer.render(scene, camera);
 };
 
@@ -282,9 +326,7 @@ window.addEventListener(
   "load",
   () => {
     init();
-    render();
+    animate();
   },
   false
 );
-
-window.addEventListener("resize", setSize);

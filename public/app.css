@@ -27,13 +27,6 @@ h6 {
   font-family: "Roboto", sans-serif;
 }
 
-#wrapper {
-  z-index: 10;
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
 #hypercube {
   position: absolute;
   left: 0;
@@ -82,6 +75,7 @@ h6 {
 }
 
 #wrapper-header-face {
+  z-index: 10;
   width: 300px;
   background-image: url("naam.jpg");
   background-size: cover;
