@@ -5,6 +5,10 @@ My light personal website. Has webpack for some simple js/css compilation. Uses 
 
 [See it in action](https://jakke.fi)
 
+
+![alt text](https://i.imgur.com/ObgOQsB.png "Image Preview")
+
+
 ---
 
 Hypercube animation based on this:
