@@ -6,52 +6,74 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Jakke Korpelainen</title>
     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/gridlex/2.7.1/gridlex.min.css"
+    />
+    <link
       href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap"
       rel="stylesheet"
     />
+    <link href="typo.css" rel="stylesheet" />
     <link href="app.css" rel="stylesheet" />
   </head>
   <body>
-    <script src="main.js"></script>
-    <main id="wrapper">
-      <header id="wrapper-header">
-        <aside id="wrapper-header-face"></aside>
-        <section id="wrapper-header-content">
-          <h1>Hello 👋</h1>
-          <p>My name is Jakke Korpelainen, I'm a full-stack developer based in Helsinki, Finland.</p>
-          <p>
-            Not sure what you're looking for in here, but if you're interested; You can find my spare-time projects in GitHub and my full professional working history is in LinkedIn.
-          </p>
-          <div id="wrapper-header-employer">
+    <main class="grid-noGutter">
+      <section id="face" class="col-6_md-12"></section>
+      <article id="content" class="col-6_md-12">
+        <div class="grid">
+          <div class="col-12">
+            <h1 class="caret">hello</h1>
+          </div>
+          <div class="col-5_lg-12">
+            <h2 class="flag">who</h2>
+          </div>
+          <div class="col-7_lg-12">
             <p>
-              Happily employed at
+              My name is Jakke Korpelainen, I'm a full-stack developer based in
+              Helsinki, Finland.
             </p>
-            <a target="_blank" href="https://bitfactor.fi">
-              <img class="employer-logo" src="bitfactor.svg" alt="Bitfactor Oy" />
-            </a>
-
-         </div>
-          <nav id="main-nav">
-            <ul>
-              <!-- <li><a href="#">About Me</a></li> -->
-              <li>
-                <a target="_blank" href="https://github.com/jakke-korpelainen">
-                  <img alt="GitHub" src="github.png"
-                /></a>
-              </li>
-              <li>
-                <a
-                  target="_blank"
-                  href="https://fi.linkedin.com/in/jakke-korpelainen"
-                >
-                  <img alt="LinkedIn" src="linkedin.png"
-                /></a>
-              </li>
-            </ul>
-          </nav>
-          </main>
-        </section>
-      </header>
-      <div id="hypercube"></div>
+          </div>
+          <hr />
+          <div class="col-5_lg-12">
+            <h2 class="flag">what</h2>
+          </div>
+          <div class="col-7_lg-12">
+            <p>
+              Not sure what you're looking for in here, but if you're
+              interested; You can find my full professional working history in
+              <a
+                target="_blank"
+                rel="nofollow noopener"
+                href="https://fi.linkedin.com/in/jakke-korpelainen"
+                >LinkedIn</a
+              >
+              and some of my spare-time projects in
+              <a
+                target="_blank"
+                rel="nofollow noopener"
+                href="https://github.com/jakke-korpelainen"
+                >GitHub</a
+              >.
+            </p>
+          </div>
+          <hr />
+          <div class="col-5_lg-12">
+            <h2 class="flag">where</h2>
+          </div>
+          <div class="col-7_lg-12">
+            <div id="employer">
+              <h3>Employed happily by</h3>
+              <a target="_blank" href="https://bitfactor.fi">
+                <img
+                  class="employer-logo"
+                  src="bitfactor.png"
+                  alt="Bitfactor Oy"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
   </body>
 </html>
