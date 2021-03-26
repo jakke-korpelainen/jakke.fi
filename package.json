@@ -3,9 +3,7 @@
     "build": "webpack --mode production",
     "start": "webpack-dev-server"
   },
-  "dependencies": {
-    "three": "^0.108.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "babel-loader": "^8.0.6",
