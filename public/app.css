@@ -1,6 +1,8 @@
 :root {
+  --var-primary: #7149f5;
   --var-foreground: #ffffff;
   --var-background: #16161d;
+  --var-accent: #333333;
 }
 
 * {
@@ -14,12 +16,12 @@ html {
 hr {
   margin: 0;
   border: 0;
-  border-top: 1px solid #333333;
+  border-top: 1px solid var(--var-accent);
   width: 100%;
 }
 
 a {
-  color: #7149f5;
+  color: var(--var-primary);
 }
 
 @media (max-width: 80em) {
@@ -47,7 +49,6 @@ body {
 
 #face {
   background: url("face.jpg") no-repeat top center;
-  /* background-size: cover; */
   min-height: 100vh;
 }
 
@@ -125,7 +126,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  background: #333333;
+  background: var(--var-accent);
 }
 
 .employer-logo {
