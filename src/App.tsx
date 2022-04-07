@@ -1,7 +1,7 @@
 import { Fragment } from "react"
 import styled, { createGlobalStyle } from "styled-components"
 import { About } from "./About"
-import face from "./face.jpg"
+import face from "./images/face.jpg"
 import { SplashImage, SplashWrapper } from "./SplashImage"
 
 function App() {
