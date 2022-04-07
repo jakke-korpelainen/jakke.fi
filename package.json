@@ -1,7 +1,6 @@
 {
   "name": "jakke.fi",
   "version": "0.1.0",
-  "homepage": "https://jakke-korpelainen.github.io/jakke.fi",
   "private": true,
   "dependencies": {
     "react": "^18.0.0",
