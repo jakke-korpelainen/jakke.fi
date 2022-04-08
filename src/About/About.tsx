@@ -48,6 +48,7 @@ const Heading = styled.h1`
 
   @media (max-width: 992px) {
     margin-top: 0;
+    margin-bottom: 1rem;
   }
 `
 
@@ -65,6 +66,10 @@ const StyledAbout = styled.div`
   @media (max-width: 1200px) {
     width: 100%;
     height: auto;
+  }
+
+  @media (max-width: 992px) {
+    padding: 1.5rem;
   }
 `
 

@@ -12,8 +12,8 @@ export const AboutWhat = () => (
           href="https://linkedin.com/in/jakke-korpelainen"
         >
           LinkedIn
-        </a>{" "}
-        and some of my public/spare-time projects in{" "}
+        </a>
+        , and some of my public/spare-time projects in{" "}
         <a
           target="_blank"
           rel="nofollow noopener noreferrer"
