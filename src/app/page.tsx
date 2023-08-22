@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const TwoColumn = ({ heading, children, className, row = true }: TwoColumnProps) => (
   <div
-    className={clsx("border-before/[0.1] flex border-b-2 pb-10 last-of-type:border-0", {
+    className={clsx("flex border-b-2 border-before/[0.1] pb-10 last-of-type:border-0", {
       ["flex-col xl:flex-row"]: row,
       ["flex-col"]: !row,
     })}
