@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  a {
+    @apply text-link underline underline-offset-4 transition-all ease-in;
+  }
+  a:hover {
+    @apply underline-offset-8;
+  }
+  h1 {
+    @apply before:text-before mb-1 mb-20 text-6xl font-semibold leading-[5.5rem] tracking-tight antialiased before:mr-4 before:inline-block before:content-['_>'] xl:text-[6rem];
+  }
+  h2 {
+    @apply before:text-before mb-2 mb-5 text-4xl font-semibold leading-[4rem] antialiased before:mr-1 before:inline-block before:content-['_--'] xl:text-[3.5rem];
+  }
+  p {
+    @apply text-base md:text-xl xl:text-2xl;
+  }
+}
