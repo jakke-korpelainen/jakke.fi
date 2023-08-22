@@ -2,11 +2,6 @@
 
 My personal website
 
-npm install
+`npm install`
 
-npm run start
-
-
-to deploy
-
-npm run deploy
+`npm run dev`
