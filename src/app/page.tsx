@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { Metadata } from "next";
 import Image from "next/image";
+
 import { WaveText } from "./components/WaveText";
 
 interface TwoColumnProps {
