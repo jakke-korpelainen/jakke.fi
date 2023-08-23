@@ -32,7 +32,7 @@ export const theme = {
         "0%": {
           transform: "translateY(0)",
         },
-        "60%": {
+        "50%": {
           transform: "translateY(-0.5rem)",
         },
         "100%": {
@@ -41,7 +41,7 @@ export const theme = {
       },
     },
     animation: {
-      wave: "wave 3s ease-in-out infinite",
+      wave: "wave 5s ease-in-out infinite",
     },
     colors: {
       white: "rgb(232, 230, 227)",

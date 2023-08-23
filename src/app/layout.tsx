@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               alt="Image of Jakke Korpelainen"
             />
           </Column>
-          <Column className="min-h-screen bg-gradient-to-b from-[#121217] to-[#262a2b] px-5 py-10 text-white sm:px-10 sm:py-20">
+          <Column className="min-h-screen bg-gradient-to-b from-[#121217] to-[#262a2b] px-5 py-10 text-white sm:px-10 xl:py-20">
             {children}
           </Column>
         </main>
