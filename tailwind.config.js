@@ -27,21 +27,29 @@ export const theme = {
     "6xl": "4rem",
   },
   extend: {
+    transitionProperty: {
+      "text-shadow": "text-shadow 0.5s ease",
+    },
     keyframes: {
       wave: {
         "0%": {
-          transform: "translateY(0)",
+          textShadow: "0 0 0.5rem rgba(255,255,255, 0.05), 0 0 2rem rgba(255,255,255, 0.05)",
+          transform: "translate3d(0, 0, 0)",
         },
+
         "50%": {
-          transform: "translateY(-0.5rem)",
+          textShadow: "0 0 0.5rem rgba(255,255,255, 0.55), 0 0 2rem rgba(0,150,0, 0.25)",
+          transform: "translate3d(0, -0.75rem, 0)",
         },
+
         "100%": {
-          transform: "translateY(0)",
+          textShadow: "0 0 0.5rem rgba(255,255,255, 0.05), 0 0 2rem rgba(255,255,255, 0.05)",
+          transform: "translate3d(0, 0, 0)",
         },
       },
     },
     animation: {
-      wave: "wave 5s ease-in-out infinite",
+      wave: "wave 2s ease-in-out infinite",
     },
     colors: {
       white: "rgb(232, 230, 227)",
