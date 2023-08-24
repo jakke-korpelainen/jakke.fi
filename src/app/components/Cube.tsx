@@ -3,14 +3,24 @@
 import type { PlaneProps } from "@react-three/cannon";
 import { Physics, usePlane, useSphere } from "@react-three/cannon";
 import type { MeshPhongMaterialProps } from "@react-three/fiber";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { ASCII, EffectComposer, N8AO, Noise } from "@react-three/postprocessing";
-import { useMemo, useRef } from "react";
+import { createRef, useMemo, useRef, useState } from "react";
 import type { InstancedMesh, Mesh, Texture } from "three";
 import { Color, TextureLoader } from "three";
 
+const colors = {
+  gray: "#333",
+  teal: "rgb(114, 255, 255)",
+  white: "white",
+  plane: {
+    left: "#333",
+    right: "#666",
+  },
+} as const;
 const imageSrc = "/face.jpg";
-const colors = ["#16161d", "teal"] as const;
+const planeColor = colors.gray;
+const cursor = createRef<Mesh>();
 
 type PlaneArgs =
   | [
@@ -38,7 +48,7 @@ function Plane({ color, image, ...props }: OurPlaneProps) {
   }, [image]);
 
   const imageWidth: PlaneArgs = [10, 10];
-  const normalWidth: PlaneArgs = [1000, 1000];
+  const normalWidth: PlaneArgs = [100, 100];
 
   return (
     <mesh ref={ref} receiveShadow>
@@ -63,7 +73,7 @@ function InstancedSpheres({ number = 100 }) {
     const color = new Color();
     for (let i = 0; i < number; i++)
       color
-        .set(colors[0])
+        .set(colors.white)
         .convertSRGBToLinear()
         .toArray(array, i * 3);
     return array;
@@ -74,28 +84,62 @@ function InstancedSpheres({ number = 100 }) {
       <sphereGeometry args={[size, 16, 16]}>
         <instancedBufferAttribute attach="attributes-color" args={[sphereColors, 3]} />
       </sphereGeometry>
-      <meshPhongMaterial vertexColors />
+      <meshPhongMaterial />
     </instancedMesh>
   );
 }
 
+const Cursor = () => {
+  const size = 1;
+  const [ref, api] = useSphere(() => ({ mass: 500, args: [size], position: [0, 0, 10000], type: "Static" }), cursor);
+
+  useFrame(({ mouse, viewport: { height, width } }) => {
+    const x = mouse.x * width;
+    const y = (mouse.y * height) / 1.9 + -x / 3.5;
+    api.position.set(x / 1.4, y, 0);
+  });
+
+  return (
+    <mesh ref={ref}>
+      <sphereGeometry args={[size, 32, 32]} />
+      <meshBasicMaterial fog={false} depthTest={false} transparent opacity={1} />
+    </mesh>
+  );
+};
+
 export default function Cube() {
+  const [asciiEnabled, setAsciiEnabled] = useState(true);
+  const changeShader = () => {
+    setAsciiEnabled(!asciiEnabled);
+  };
+
+  const postProcessing = useMemo(() => {
+    return (
+      <EffectComposer>
+        {asciiEnabled ? (
+          <ASCII characters="jakeorplin" invert cellSize={7} color={colors.teal} fontSize={100} />
+        ) : (
+          <></>
+        )}
+        <N8AO quality="performance" halfRes color={colors.gray} aoRadius={5} distanceFalloff={5} intensity={7} />
+        <Noise opacity={0.02} />
+      </EffectComposer>
+    );
+  }, [asciiEnabled]);
+
   return (
     <Canvas
+      onClick={changeShader}
+      className="cursor-none select-none"
+      dpr={[0.5, 1]}
       shadows
       camera={{ position: [0, 0, 8] }}
       gl={{
         alpha: false,
-        // todo: stop using legacy lights
-        useLegacyLights: false,
       }}
     >
-      <EffectComposer>
-        <ASCII invert color={colors[1]} fontSize={50} />
-        <N8AO color={colors[0]} aoRadius={5} distanceFalloff={1} intensity={5} />
-        <Noise opacity={0.02} />
-      </EffectComposer>
-      <hemisphereLight intensity={1} />
+      {postProcessing}
+      <hemisphereLight intensity={2.5} />
       <spotLight
         position={[30, 0, 30]}
         angle={0.3}
@@ -107,21 +151,23 @@ export default function Cube() {
       />
       <pointLight position={[-30, 0, -30]} intensity={0.5} />
       <Physics gravity={[0, 0, -30]}>
+        <Cursor />
+
         {/* surface */}
         <Plane image="/face.jpg" position={[0, 0, 0]} rotation={[0, 0, 0]} />
 
         {/* left */}
-        <Plane color={colors[0]} position={[-6, 0, 0]} rotation={[0, 0.9, 0]} />
+        <Plane color={colors.plane.left} position={[-6, 0, 0]} rotation={[0, 0.9, 0]} />
 
         {/* right */}
-        <Plane color={colors[0]} position={[6, 0, 0]} rotation={[0, -0.9, 0]} />
+        <Plane color={colors.plane.right} position={[6, 0, 0]} rotation={[0, -0.9, 0]} />
 
         {/* back */}
-        <Plane color={colors[0]} position={[0, 6, 0]} rotation={[0.9, 0, 0]} />
+        <Plane color={planeColor} position={[0, 6, 0]} rotation={[0.9, 0, 0]} />
 
         {/* front */}
-        <Plane color={colors[0]} position={[0, -6, 0]} rotation={[-0.9, 0, 0]} />
-        {/* <Box /> */}
+        <Plane color={planeColor} position={[0, -6, 0]} rotation={[-0.9, 0, 0]} />
+
         <InstancedSpheres number={50} />
       </Physics>
     </Canvas>
