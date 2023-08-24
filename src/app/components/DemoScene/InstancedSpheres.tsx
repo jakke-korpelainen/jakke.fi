@@ -1,6 +1,7 @@
 import { useSphere } from "@react-three/cannon";
-import { useRef, useMemo } from "react";
-import { InstancedMesh, Color } from "three";
+import { useMemo, useRef } from "react";
+import { Color, InstancedMesh } from "three";
+
 import { colors } from ".";
 
 export function InstancedSpheres({ number = 100 }) {

@@ -2,11 +2,12 @@
 
 import { Physics } from "@react-three/cannon";
 import { Canvas } from "@react-three/fiber";
-import { ASCII, EffectComposer, N8AO, Noise } from "@react-three/postprocessing";
+import { ASCII, EffectComposer, N8AO } from "@react-three/postprocessing";
 import { useMemo, useState } from "react";
-import { Plane } from "./Plane";
-import { InstancedSpheres } from "./InstancedSpheres";
+
 import { Cursor } from "./Cursor";
+import { InstancedSpheres } from "./InstancedSpheres";
+import { Plane } from "./Plane";
 
 export const colors = {
   gray: "#333",
