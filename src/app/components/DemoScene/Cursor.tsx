@@ -11,8 +11,8 @@ export const Cursor = () => {
 
   useFrame(({ mouse, viewport: { height, width } }) => {
     const x = mouse.x * width;
-    const y = (mouse.y * height) / 1.9 + -x / 3.5;
-    api.position.set(x / 1.4, y, 0);
+    const y = mouse.y * height;
+    api.position.set(x, y, 0);
   });
 
   return (
