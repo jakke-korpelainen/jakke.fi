@@ -10,10 +10,13 @@
     @apply text-link-hover underline-offset-8;
   }
   h1 {
-    @apply relative mb-4 flex flex-col gap-5 text-6xl font-black leading-[5.5rem] tracking-tight before:inline-block before:text-before before:content-['_>'] sm:flex-row xl:mb-14 xl:text-[6rem] max:mb-20;
+    @apply relative mb-4 flex gap-5 text-3xl font-black leading-[5.5rem] tracking-tight before:inline-block before:text-before before:content-['_>'] md:text-6xl xl:mb-14 xl:text-[6rem] max:mb-20;
   }
   h2 {
-    @apply mb-2 mb-5 text-4xl font-semibold leading-[4rem] before:mr-1 before:inline-block before:text-before before:content-['_--'] xl:text-[3.5rem];
+    @apply mb-5 text-xl font-semibold leading-[4rem] before:mr-1 before:inline-block before:text-before before:content-['_--'] lg:text-[2xl] xl:text-[3.5rem];
+  }
+  h3 {
+    @apply mb-2 text-xl font-semibold leading-[2rem] before:mr-1 before:inline-block before:text-before before:content-['_--'];
   }
   p {
     @apply text-base md:text-xl xl:text-2xl;
