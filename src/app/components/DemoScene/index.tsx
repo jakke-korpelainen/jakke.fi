@@ -78,7 +78,7 @@ export default function DemoScene() {
 
         {/* bottom */}
         <Plane color={colors.plane.bottom} position={[0, -6, 0]} rotation={[-0.9, 0, 0]} />
-        <InstancedSpheres number={50} />
+        <InstancedSpheres number={15} />
       </Physics>
     </Canvas>
   );
