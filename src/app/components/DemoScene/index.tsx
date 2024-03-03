@@ -32,7 +32,7 @@ export default function DemoScene() {
     return (
       <EffectComposer>
         {asciiEnabled ? (
-          <ASCII characters="jakeorplin" invert cellSize={8} color={colors.teal} fontSize={100} />
+          <ASCII characters="jakeorplin" invert cellSize={25} color={colors.teal} fontSize={80} />
         ) : (
           <></>
         )}
