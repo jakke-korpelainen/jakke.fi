@@ -20,7 +20,7 @@ export const colors = {
     bottom: "#16161d",
   },
 } as const;
-const imageSrc = "/face.jpg";
+const imageSrc = "/face_2024.jpg";
 
 export default function DemoScene() {
   const [asciiEnabled, setAsciiEnabled] = useState(true);
@@ -78,7 +78,7 @@ export default function DemoScene() {
 
         {/* bottom */}
         <Plane color={colors.plane.bottom} position={[0, -6, 0]} rotation={[-0.9, 0, 0]} />
-        <InstancedSpheres number={15} />
+        <InstancedSpheres />
       </Physics>
     </Canvas>
   );

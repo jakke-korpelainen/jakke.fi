@@ -4,7 +4,9 @@ import { Color, InstancedMesh } from "three";
 
 import { colors } from ".";
 
-export function InstancedSpheres({ number = 100 }) {
+const DEFAULT_SPHERE_COUNT = 5;
+
+export function InstancedSpheres({ number = DEFAULT_SPHERE_COUNT }) {
   const size = 0.5;
   const [ref] = useSphere(
     (index) => ({
