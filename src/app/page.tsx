@@ -27,7 +27,7 @@ const Loading = () => (
   </div>
 );
 
-const TwoColumn = ({ heading, children, className, row = true }: TwoColumnProps) => (
+const TwoColumn = ({ heading, children, row = true }: TwoColumnProps) => (
   <div
     className={clsx("flex border-b-2 border-before/[0.1] pb-5 last-of-type:border-0 last-of-type:pb-0 xl:pb-10", {
       ["flex-col xl:flex-row"]: row,
@@ -52,11 +52,11 @@ export default function Page() {
       <Column className="min-h-screen bg-gradient-to-b from-[#121217] to-[#262a2b] px-5 py-10 text-white sm:px-10 xl:py-20">
         <div className="grow">
           <h1 title="Kinda funky, innit?">
-            <WaveText words={["Hello!",]} />
+            <WaveText words={["Hello!"]} />
           </h1>
 
           <div className="flex flex-col gap-5">
-            <TwoColumn className="flex  gap-4 sm:gap-10 lg:items-center lg:gap-0" heading="who">
+            <TwoColumn heading="who">
               <Image
                 width={240}
                 height={240}
