@@ -20,7 +20,13 @@ export const Cursor = () => {
   return (
     <mesh ref={ref}>
       <sphereGeometry args={[SIZE, SEGMENTS, SEGMENTS]} />
-      <meshStandardMaterial emissive={"orange"} emissiveIntensity={0.5} metalness={0.1} attach="material" color="orange" />
+      <meshStandardMaterial
+        emissive={"orange"}
+        emissiveIntensity={0.5}
+        metalness={0.1}
+        attach="material"
+        color="orange"
+      />
     </mesh>
   );
 };

@@ -1,12 +1,12 @@
 import clsx from "clsx";
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { Suspense } from "react";
 
 import { Column } from "./components/Column";
 import DemoScene from "./components/DemoScene";
 import { WaveText } from "./components/WaveText";
-import Link from "next/link";
 
 interface TwoColumnProps {
   row?: boolean;
@@ -34,8 +34,8 @@ const TwoColumn = ({ heading, children, row = true }: TwoColumnProps) => (
       ["flex-col"]: !row,
     })}
   >
-    <h2 className={clsx({ ["w-full xl:w-80 m-0"]: row, ["w-full"]: !row })}>{heading}</h2>
-    <div className={clsx("w-full flex gap-4 sm:gap-10 lg:gap-0 items-center")}>{children}</div>
+    <h2 className={clsx({ ["m-0 w-full xl:w-80"]: row, ["w-full"]: !row })}>{heading}</h2>
+    <div className={clsx("flex w-full items-center gap-4 sm:gap-10 lg:gap-0")}>{children}</div>
   </div>
 );
 
@@ -64,16 +64,30 @@ export default function Page() {
                 src="/face_2024.jpg"
                 alt="Image of Jakke Korpelainen"
               />
-              <p>
-                My name is Jakke Korpelainen, I'm a full-stack developer based in Helsinki, Finland.
-              </p>
+              <p>My name is Jakke Korpelainen, I'm a full-stack developer based in Helsinki, Finland.</p>
             </TwoColumn>
             <TwoColumn heading="what">
               <ul className="inline-flex gap-5">
-                <li><Link target="_blank" href="/curriculum-vitae.pdf">Curriculum Vitae</Link></li>
-                <li><a target="_blank" href="https://linkedin.com/in/jakke-korpelainen">LinkedIn</a></li>
-                <li><a target="_blank" href="https://github.com/jakke-korpelainen">GitHub</a></li>
-                <li><a target="_blank" href="https://bsky.app/profile/jakke.fi">Bluesky</a></li>
+                <li>
+                  <Link target="_blank" href="/curriculum-vitae.pdf">
+                    Curriculum Vitae
+                  </Link>
+                </li>
+                <li>
+                  <a target="_blank" href="https://linkedin.com/in/jakke-korpelainen">
+                    LinkedIn
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" href="https://github.com/jakke-korpelainen">
+                    GitHub
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" href="https://bsky.app/profile/jakke.fi">
+                    Bluesky
+                  </a>
+                </li>
               </ul>
             </TwoColumn>
             <TwoColumn row={false} heading="where">
