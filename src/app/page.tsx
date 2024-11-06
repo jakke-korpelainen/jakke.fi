@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { Suspense } from "react";
 
 import { Column } from "./components/Column";
@@ -26,15 +27,15 @@ const Loading = () => (
   </div>
 );
 
-const TwoColumn = ({ heading, children, className, row = true }: TwoColumnProps) => (
+const TwoColumn = ({ heading, children, row = true }: TwoColumnProps) => (
   <div
     className={clsx("flex border-b-2 border-before/[0.1] pb-5 last-of-type:border-0 last-of-type:pb-0 xl:pb-10", {
       ["flex-col xl:flex-row"]: row,
       ["flex-col"]: !row,
     })}
   >
-    <h2 className={clsx({ ["w-full xl:w-80"]: row, ["w-full"]: !row })}>{heading}</h2>
-    <div className={clsx("w-full", className)}>{children}</div>
+    <h2 className={clsx({ ["m-0 w-full xl:w-80"]: row, ["w-full"]: !row })}>{heading}</h2>
+    <div className={clsx("flex w-full items-center gap-4 sm:gap-10 lg:gap-0")}>{children}</div>
   </div>
 );
 
@@ -55,7 +56,7 @@ export default function Page() {
           </h1>
 
           <div className="flex flex-col gap-5">
-            <TwoColumn className="flex items-center gap-4 sm:gap-10 lg:items-start lg:gap-0" heading="who">
+            <TwoColumn heading="who">
               <Image
                 width={240}
                 height={240}
@@ -63,17 +64,31 @@ export default function Page() {
                 src="/face_2024.jpg"
                 alt="Image of Jakke Korpelainen"
               />
-              <p>
-                My name is Jakke Korpelainen, I'm a full-stack developer (with frontend focus) based in HELSINKI,
-                FINLAND.
-              </p>
+              <p>My name is Jakke Korpelainen, I'm a full-stack developer based in Helsinki, Finland.</p>
             </TwoColumn>
             <TwoColumn heading="what">
-              <p>
-                Not sure what you're looking for in here, but if you're interested; You can find my full professional
-                working history in <a href="https://linkedin.com/in/jakke-korpelainen">LinkedIn</a>, and some of my
-                public/spare-time projects in <a href="https://github.com/jakke-korpelainen">GitHub</a>.
-              </p>
+              <ul className="inline-flex gap-5">
+                <li>
+                  <Link target="_blank" href="/curriculum-vitae.pdf">
+                    Curriculum Vitae
+                  </Link>
+                </li>
+                <li>
+                  <a target="_blank" href="https://linkedin.com/in/jakke-korpelainen">
+                    LinkedIn
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" href="https://github.com/jakke-korpelainen">
+                    GitHub
+                  </a>
+                </li>
+                <li>
+                  <a target="_blank" href="https://bsky.app/profile/jakke.fi">
+                    Bluesky
+                  </a>
+                </li>
+              </ul>
             </TwoColumn>
             <TwoColumn row={false} heading="where">
               <Image
