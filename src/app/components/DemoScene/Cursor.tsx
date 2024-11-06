@@ -5,9 +5,11 @@ import { Mesh } from "three";
 
 const cursor = createRef<Mesh>();
 
+const SIZE = 1;
+const SEGMENTS = 32;
+
 export const Cursor = () => {
-  const size = 1;
-  const [ref, api] = useSphere(() => ({ mass: 500, args: [size], position: [0, 0, 10000], type: "Static" }), cursor);
+  const [ref, api] = useSphere(() => ({ mass: 500, args: [SIZE], position: [0, 0, 10000], type: "Static" }), cursor);
 
   useFrame(({ mouse, viewport: { height, width } }) => {
     const x = (mouse.x * width) / 1.6;
@@ -17,8 +19,8 @@ export const Cursor = () => {
 
   return (
     <mesh ref={ref}>
-      <sphereGeometry args={[size, 32, 32]} />
-      <meshBasicMaterial fog={false} depthTest={false} transparent opacity={1} />
+      <sphereGeometry args={[SIZE, SEGMENTS, SEGMENTS]} />
+      <meshStandardMaterial emissive={"orange"} emissiveIntensity={0.5} metalness={0.1} attach="material" color="orange" />
     </mesh>
   );
 };

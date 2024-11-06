@@ -3,7 +3,6 @@
 import { Physics } from "@react-three/cannon";
 import { Canvas } from "@react-three/fiber";
 import { EffectComposer, N8AO } from "@react-three/postprocessing";
-
 import { Cursor } from "./Cursor";
 import { InstancedSpheres } from "./InstancedSpheres";
 import { Plane } from "./Plane";
@@ -19,24 +18,14 @@ export const colors = {
     bottom: "#16161d",
   },
 } as const;
+
 const imageSrc = "/face_2024.jpg";
 
 export default function DemoScene() {
-
   return (
-    <Canvas
-      className="cursor-none select-none"
-      dpr={[0.5, 1]}
-      shadows
-      camera={{ position: [0, 0, 8] }}
-    >
+    <Canvas className="cursor-none select-none" dpr={[0.5, 1]} shadows camera={{ position: [0, 0, 8] }}>
       <EffectComposer>
-        {/* {asciiEnabled ? (
-          <ASCII characters="jakeorplin" invert cellSize={25} color={colors.teal} fontSize={80} />
-        ) : (
-          <></>
-        )} */}
-        <N8AO quality="performance" halfRes color={colors.gray} aoRadius={5} distanceFalloff={5} intensity={2.5} />
+        <N8AO quality="performance" halfRes color={colors.gray} aoRadius={5} distanceFalloff={5} intensity={5} />
       </EffectComposer>
       <hemisphereLight intensity={2.5} />
       <spotLight
