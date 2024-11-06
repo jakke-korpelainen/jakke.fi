@@ -4,16 +4,17 @@
   "description": "Homepage of the author",
   "dependencies": {
     "@react-three/cannon": "^6.6.0",
-    "@react-three/fiber": "^8.13.7",
-    "@react-three/postprocessing": "^2.15.1",
-    "clsx": "^2.0.0",
-    "date-fns": "^2.30.0",
+    "@react-three/fiber": "^8.17.10",
+    "@react-three/postprocessing": "^2.16.3",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "next": "^13.4.19",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tailwindcss": "^3.3.3",
-    "three": "^0.155.0",
-    "uuid": "^9.0.1"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sharp": "^0.33.5",
+    "tailwindcss": "^3.4.14",
+    "three": "^0.170.0",
+    "uuid": "^11.0.2"
   },
   "scripts": {
     "dev": "next dev",
@@ -22,22 +23,22 @@
     "lint": "next lint --fix"
   },
   "devDependencies": {
-    "@types/node": "20.5.2",
-    "@types/react": "18.2.20",
-    "@types/three": "^0.155.1",
-    "@types/uuid": "^9.0.6",
+    "@types/node": "^22.9.0",
+    "@types/react": "^18.3.12",
+    "@types/three": "^0.169.0",
+    "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "@typescript-eslint/parser": "^6.4.1",
-    "autoprefixer": "^10.4.15",
+    "autoprefixer": "^10.4.20",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.19",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-tailwindcss": "^3.13.0",
-    "eslint-plugin-unused-imports": "^3.0.0",
-    "postcss": "^8.4.28",
-    "prettier-plugin-tailwindcss": "^0.5.3",
-    "typescript": "^5.1.6"
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "postcss": "^8.4.47",
+    "prettier-plugin-tailwindcss": "^0.6.8",
+    "typescript": "^5.6.3"
   }
 }
