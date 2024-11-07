@@ -1,8 +1,9 @@
 import { useSphere } from "@react-three/cannon";
+import { useTexture } from "@react-three/drei";
 import { useRef } from "react";
 import { InstancedMesh } from "three";
+
 import { COLORS } from ".";
-import { useTexture } from "@react-three/drei";
 
 const DEFAULT_SPHERE_COUNT = 8;
 const SPHERE_TEXTURE = "/ball.png";

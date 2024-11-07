@@ -2,11 +2,12 @@
 
 import { Physics } from "@react-three/cannon";
 import { Canvas } from "@react-three/fiber";
+import { EffectComposer, N8AO } from "@react-three/postprocessing";
+import { Color } from "three";
+
 import { Cursor } from "./Cursor";
 import { InstancedSpheres } from "./InstancedSpheres";
 import { Plane, TexturedPlane } from "./Plane";
-import { EffectComposer, N8AO } from "@react-three/postprocessing";
-import { Color, Fog } from "three";
 
 export const COLORS = {
   cursor: new Color("orange"),
