@@ -1,4 +1,4 @@
-import { Karla, Fira_Code } from "next/font/google";
+import { Fira_Code, Karla } from "next/font/google";
 
 export const karla = Karla({
   subsets: ["latin"],

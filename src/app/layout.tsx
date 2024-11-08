@@ -2,7 +2,7 @@ import "@/global.css";
 
 import clsx from "clsx";
 
-import { karla, firaCode } from "@/fonts";
+import { firaCode, karla } from "@/fonts";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

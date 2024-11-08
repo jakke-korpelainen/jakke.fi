@@ -1,6 +1,8 @@
-import { queryAllBlogPosts } from "@/lib/contentful/blogPost";
-import { BlogPostListItem } from "./BlogPostListItem";
 import Link from "next/link";
+
+import { queryAllBlogPosts } from "@/lib/contentful/blogPost";
+
+import { BlogPostListItem } from "./BlogPostListItem";
 
 export async function BlogPostList({ tag }: { tag?: string }) {
   const items = await queryAllBlogPosts();

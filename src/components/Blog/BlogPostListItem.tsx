@@ -1,7 +1,9 @@
-import { BlogPost } from "@/lib/contentful/blogPost";
 import Link from "next/link";
-import { Tags } from "./Tags";
+
+import { BlogPost } from "@/lib/contentful/blogPost";
 import { formatDateString } from "@/lib/date";
+
+import { Tags } from "./Tags";
 
 export async function BlogPostListItem({ item }: { item: BlogPost }) {
   return (
