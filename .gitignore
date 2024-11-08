@@ -16,6 +16,7 @@
 /build
 
 # misc
+.vscode
 .DS_Store
 *.pem
 Thumbs.db
@@ -32,5 +33,6 @@ yarn-error.log*
 # vercel
 
 .vercel
+
 # local folder
 local
