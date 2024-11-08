@@ -20,7 +20,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
         <div className="container mx-auto grow">{children}</div>
         <div className="container mx-auto flex items-center justify-between gap-10">
           <div className="select-none text-gray-400">&copy; jakke.fi</div>
-          <ul className="inline-flex [&>li]:text-base">
+          <ul className="inline-flex gap-5 [&>li]:text-base">
             <li>
               <Link href="/">Home</Link>
             </li>

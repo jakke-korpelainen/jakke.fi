@@ -59,7 +59,7 @@ export default async function BlogPage({ params }: Readonly<BlogPageProps>) {
             <Markdown>{blogPost.content}</Markdown>
           </section>
         </main>
-        <footer></footer>
+        <footer>{/* using this soon */}</footer>
       </article>
     </>
   );
