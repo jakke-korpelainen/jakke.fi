@@ -38,7 +38,12 @@ export function Code({ className, children }: any) {
         {children}
       </SyntaxHighlighter>
       {copy && (
-        <button disabled={!!text} className="absolute right-5 top-5" type="button" onClick={() => copy(children)}>
+        <button
+          disabled={!!text}
+          className="absolute right-5 top-5 hidden sm:block"
+          type="button"
+          onClick={() => copy(children)}
+        >
           {text ?? "Copy"}
         </button>
       )}
