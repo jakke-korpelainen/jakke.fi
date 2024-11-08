@@ -4,9 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 
-import { Column } from "./components/Column";
-import DemoScene from "./components/DemoScene";
-import { WaveText } from "./components/WaveText";
+import { Column } from "@/components/Column";
+import DemoScene from "@/components/DemoScene";
+import { WaveText } from "@/components/WaveText";
 
 interface TwoColumnProps {
   row?: boolean;
@@ -72,6 +72,9 @@ export default function Page() {
                   <Link target="_blank" href="/curriculum-vitae.pdf">
                     Curriculum Vitae
                   </Link>
+                </li>
+                <li>
+                  <Link href="/blog">Blog</Link>
                 </li>
                 <li>
                   <a target="_blank" href="https://linkedin.com/in/jakke-korpelainen">

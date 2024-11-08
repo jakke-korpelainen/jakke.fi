@@ -9,8 +9,11 @@
   a:hover {
     @apply text-link-hover underline-offset-8;
   }
+  button:hover {
+    @apply text-link-hover underline-offset-8 transition-all ease-in;
+  }
   h1 {
-    @apply relative mb-2 flex gap-5 text-3xl font-black tracking-tight before:inline-block before:text-before before:content-['_>'] md:text-6xl lg:mb-4 lg:leading-[5.5rem] xl:mb-14 xl:text-[6rem] max:mb-20;
+    @apply relative mb-2 flex gap-5 text-3xl font-black tracking-tight before:inline-block before:text-before before:content-['_>'] md:text-6xl lg:mb-4 lg:leading-[5.5rem] xl:mb-14 xl:text-[6rem];
   }
   h2 {
     @apply mb-5 text-xl font-semibold leading-[4rem] before:mr-1 before:inline-block before:text-before before:content-['_--'] lg:text-2xl xl:text-[3.5rem];
@@ -18,7 +21,18 @@
   h3 {
     @apply mb-2 text-xl font-semibold leading-[2rem] before:mr-1 before:inline-block before:text-before before:content-['_--'];
   }
-  p, li {
+  p,
+  li {
     @apply text-base md:text-xl xl:text-2xl;
+  }
+  article p + h2,
+  article p + h3 {
+    @apply mt-10;
+  }
+  article p + p {
+    @apply mt-5;
+  }
+  article h3 {
+    @apply mb-5 mt-3;
   }
 }
