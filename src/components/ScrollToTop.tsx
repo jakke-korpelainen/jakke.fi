@@ -8,8 +8,8 @@ function scrollToTop(e: React.MouseEvent) {
 export const ScrollToTop = () => {
   return (
     <li>
-      <a href="#" onClick={scrollToTop}>
-        Scroll to top
+      <a className="no-underline" href="#" onClick={scrollToTop}>
+        ⬆️
       </a>
     </li>
   );

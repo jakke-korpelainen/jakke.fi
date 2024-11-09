@@ -1,8 +1,8 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Tags } from "@/components/Blog/Tags";
+import { Breadcrumb } from "@/components/Breadcrumb";
 import { Markdown } from "@/components/Markdown";
 import { queryBlogPostBySlug } from "@/lib/contentful/blogPost";
 import { formatDateString } from "@/lib/date";
@@ -31,9 +31,8 @@ export default async function BlogPage({ params }: Readonly<BlogPageProps>) {
 
   return (
     <>
-      <Link className="text-2xl" href="/blog">
-        Back to list of articles
-      </Link>
+      <Breadcrumb items={[{ label: "Location" }, { label: "Blog", href: "/blog" }, { label: blogPost.slug }]} />
+
       <article className="mt-10 flex flex-col space-y-10">
         <header className="space-y-10">
           <h1>{blogPost.title}</h1>
