@@ -1,12 +1,11 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Tags } from "@/components/Blog/Tags";
+import { Breadcrumb } from "@/components/Breadcrumb";
 import { Markdown } from "@/components/Markdown";
 import { queryBlogPostBySlug } from "@/lib/contentful/blogPost";
 import { formatDateString } from "@/lib/date";
-import { Breadcrumb } from "@/components/Breadcrumb";
 
 interface BlogPageProps {
   params: {
