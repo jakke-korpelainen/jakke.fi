@@ -9,7 +9,7 @@ export async function BlogPostList({ tag }: { tag?: string }) {
   const filteredItems = tag ? items.filter((item) => item.tags.includes(tag)) : items;
 
   return (
-    <div>
+    <div className="space-y-10">
       {tag && (
         <>
           <p className="mb-10">
