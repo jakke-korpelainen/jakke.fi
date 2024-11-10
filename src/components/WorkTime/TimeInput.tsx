@@ -12,7 +12,7 @@ import {
   radioInputClass,
   radioLabelClass,
 } from "./classes";
-import { maximumPaidBreak } from "./helper";
+import { MAXIMUM_PAID_BREAK } from "./helper";
 import { Pause } from "./reducer/types";
 
 interface TimeInputProps extends Pick<Pause, "id" | "startTime"> {
@@ -56,8 +56,8 @@ export const TimeInput = ({
       duration = formatDistance(startTime, endTime);
       if (paid) {
         const diff = differenceInMinutes(endTime, startTime);
-        if (diff > maximumPaidBreak) {
-          excess = diff - maximumPaidBreak;
+        if (diff > MAXIMUM_PAID_BREAK) {
+          excess = diff - MAXIMUM_PAID_BREAK;
         }
       }
     } catch (err) {
@@ -149,7 +149,7 @@ export const TimeInput = ({
                 </div>
                 <div className={durationGroupClass}>
                   <span className={labelClass}>paid</span>
-                  <span>{maximumPaidBreak} minutes</span>
+                  <span>{MAXIMUM_PAID_BREAK} minutes</span>
                 </div>
                 <div className={durationGroupClass}>
                   <span className={labelClass}>unpaid</span> <span className="text-red-400">{excess} minutes</span>
