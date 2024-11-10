@@ -8,11 +8,29 @@ import { useEffect, useState } from "react";
 import { calculateClockOut } from "./helper";
 import { TimeState } from "./reducer/types";
 
+const CannotCompute = () => (
+  <>
+    <p>
+      Unable to calculate.
+      <br />
+      Please check input values.
+    </p>
+  </>
+);
+
 export const ClockOut = ({ ...state }: TimeState) => {
   "use client";
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
 
-  let clockOutValue = "N/A";
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  let clockOutEl: JSX.Element | null = null;
+  let clockOutValue = null;
   let clockOutDate = null;
 
   try {
@@ -22,15 +40,23 @@ export const ClockOut = ({ ...state }: TimeState) => {
     console.error(err);
   }
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   const isPastClockOutDate = clockOutDate ? isPast(clockOutDate) : false;
   const leaveText = isPastClockOutDate ? "Time to leave" : "You can leave at";
+
+  try {
+    if (!isPastClockOutDate && currentTime && clockOutDate) {
+      clockOutEl = (
+        <p>
+          {formatDistanceStrict(clockOutDate, currentTime, {
+            addSuffix: true,
+            unit: "second",
+          })}
+        </p>
+      );
+    }
+  } catch (err) {
+    clockOutEl = <CannotCompute />;
+  }
 
   return (
     <div className="relative flex w-full grow flex-col items-center overflow-hidden">
@@ -45,18 +71,13 @@ export const ClockOut = ({ ...state }: TimeState) => {
         src="/hanh.png"
       />
       <div className="z-10 flex w-full grow flex-col justify-center gap-5">
-        <p>{leaveText}</p>
-        <h1 className="lg:text-7xl mb-0 leading-[2rem] lg:text-[6rem] lg:leading-[7rem]">{clockOutValue}</h1>
-
-        {!isPastClockOutDate && currentTime && clockOutDate && (
-          <p>
-            {formatDistanceStrict(clockOutDate, currentTime, {
-              addSuffix: true,
-              unit: "second",
-            })}
-            .
-          </p>
+        {clockOutValue && (
+          <>
+            <p>{leaveText}</p>
+            <h1 className="lg:text-7xl mb-0 leading-[2rem] lg:text-[6rem] lg:leading-[7rem]">{clockOutValue}</h1>
+          </>
         )}
+        {clockOutEl}
       </div>
     </div>
   );

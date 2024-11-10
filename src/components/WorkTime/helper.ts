@@ -1,4 +1,4 @@
-import { add, differenceInMinutes } from "date-fns";
+import { add, differenceInMinutes, Duration } from "date-fns";
 
 import { Pause, TimeState } from "./reducer/types";
 
@@ -9,7 +9,12 @@ export const sortDateDesc = (a: Date, b: Date) => {
 /**
  * Any excess paid time will be considered as unpaid time
  */
-export const maximumPaidBreak = 15;
+export const MAXIMUM_PAID_BREAK = 15;
+
+const DEFAULT_WORK_TIME: Duration = {
+  hours: 7,
+  minutes: 30,
+};
 
 export function calculatePauseDuration(accumulator: { regular: number; excess?: number }, pause: Pause) {
   let diff = 0;
@@ -20,8 +25,8 @@ export function calculatePauseDuration(accumulator: { regular: number; excess?: 
   diff = differenceInMinutes(pause.endTime, pause.startTime);
 
   /** overflow sum for overspent paid breaks */
-  if (shouldCalculateExcess && diff > maximumPaidBreak) {
-    excess = diff - maximumPaidBreak;
+  if (shouldCalculateExcess && diff > MAXIMUM_PAID_BREAK) {
+    excess = diff - MAXIMUM_PAID_BREAK;
   }
 
   return {
@@ -37,10 +42,7 @@ export const calculateClockOut = ({ startTime, pauses }: TimeState) => {
     paid: pauses.filter((p) => p.paid === true).reduce(calculatePauseDuration, { regular: 0, excess: 0 }),
   };
 
-  const baseWorkTime = add(startTime, {
-    hours: 7,
-    minutes: 30,
-  });
+  const baseWorkTime = add(startTime, DEFAULT_WORK_TIME);
 
   // calculate paid excess overflow to unpaid time
   const afterPaidExcessPauses = add(baseWorkTime, {
