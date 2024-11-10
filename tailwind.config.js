@@ -64,7 +64,7 @@ export const theme = {
     colors: {
       white: "rgb(232, 230, 227)",
       before: "rgba(114, 255, 255, 0.55)",
-      link: { normal: "rgb(114, 255, 255)", hover: "orange" },
+      link: { normal: "rgb(114, 255, 255)", darker: "rgb(77, 176, 176)", hover: "orange" },
     },
     fontFamily: {
       // Be sure to update these if you change your fonts.
