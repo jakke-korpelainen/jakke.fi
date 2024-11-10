@@ -18,7 +18,7 @@ export default async function BlogIndex({ searchParams }: BlogParams) {
   const { tag } = searchParams ?? {};
   return (
     <div className="space-y-10">
-      <Breadcrumb items={[{ label: "Location" }, { label: "Blog" }]} />
+      <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Blog" }]} />
       <h1>Blog</h1>
       <h2>Articles</h2>
 
