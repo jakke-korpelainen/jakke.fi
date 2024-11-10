@@ -49,8 +49,8 @@ export default function Page() {
           <DemoScene />
         </Suspense>
       </Column>
-      <Column className="min-h-screen bg-gradient-to-b from-[#121217] to-[#262a2b] px-5 py-10 text-white sm:px-10 xl:py-20">
-        <div className="grow">
+      <Column className="min-h-screen bg-gradient-to-b from-[#121217] to-[#262a2b] py-5 text-white sm:py-10">
+        <div className="container grow">
           <h1 title="Kinda funky, innit?">
             <WaveText words={["Hello!"]} />
           </h1>

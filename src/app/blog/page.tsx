@@ -17,10 +17,13 @@ interface BlogParams {
 export default async function BlogIndex({ searchParams }: BlogParams) {
   const { tag } = searchParams ?? {};
   return (
-    <div className="space-y-10">
+    <div>
       <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Blog" }]} />
-      <h1>Blog</h1>
-      <h2>Articles</h2>
+
+      <header className="mt-10">
+        <h1>Blog</h1>
+        <h2>Articles</h2>
+      </header>
 
       <Suspense fallback={<LoadingSpinner />}>
         <BlogPostList tag={tag} />
