@@ -3,10 +3,32 @@ import Link from "next/link";
 import { queryAllBlogPosts } from "@/lib/contentful/blogPost";
 
 import { BlogPostListItem } from "./BlogPostListItem";
+import clsx from "clsx";
 
-export async function BlogPostList({ tag }: { tag?: string }) {
-  const items = await queryAllBlogPosts();
+const DEFAULT_PAGE_SIZE = 15;
+
+const classes = {
+  button: {
+    disabled: "pointer-events-none select-none opacity-50",
+  },
+};
+
+export async function BlogPostList({
+  tag,
+  skip = 0,
+  limit = DEFAULT_PAGE_SIZE,
+}: {
+  tag?: string;
+  skip?: number;
+  limit?: number;
+}) {
+  const { total, items } = (await queryAllBlogPosts({ skip, limit })) ?? { total: 0, items: [] };
   const filteredItems = tag ? items.filter((item) => item.tags.includes(tag)) : items;
+  const totalPages = Math.ceil(total / limit);
+  const currentPage = Math.floor(skip / limit) + 1;
+
+  const isPrevDisabled = currentPage <= 1;
+  const isNextDisabled = currentPage === totalPages;
 
   return (
     <div className="space-y-10">
@@ -24,6 +46,29 @@ export async function BlogPostList({ tag }: { tag?: string }) {
       {filteredItems.map((item) => (
         <BlogPostListItem key={item.sys.id} item={item} />
       ))}
+
+      {total > limit && (
+        <div className="flex items-center justify-between">
+          <Link
+            href={{
+              pathname: "/blog",
+              query: { tag, skip: Math.max(0, skip - limit), limit },
+            }}
+            className={clsx(`rounded bg-gray-800 px-4 py-2 text-white`, { [classes.button.disabled]: isPrevDisabled })}
+          >
+            Previous
+          </Link>
+          <span>
+            Page {currentPage} of {totalPages}
+          </span>
+          <Link
+            href={{ pathname: "/blog", query: { tag, skip: skip + limit, limit } }}
+            className={clsx(`rounded bg-gray-800 px-4 py-2 text-white`, { [classes.button.disabled]: isNextDisabled })}
+          >
+            Next
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

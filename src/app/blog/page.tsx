@@ -11,11 +11,17 @@ export const metadata = {
 interface BlogParams {
   searchParams: {
     tag?: string;
+    skip?: string;
+    limit?: string;
   };
 }
 
 export default async function BlogIndex({ searchParams }: BlogParams) {
-  const { tag } = searchParams ?? {};
+  const { tag, skip, limit } = searchParams ?? {};
+
+  const skipNumber = skip ? parseInt(skip) : undefined;
+  const limitNumber = limit ? parseInt(limit) : undefined;
+
   return (
     <div>
       <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Blog" }]} />
@@ -26,7 +32,7 @@ export default async function BlogIndex({ searchParams }: BlogParams) {
       </header>
 
       <Suspense fallback={<LoadingSpinner />}>
-        <BlogPostList tag={tag} />
+        <BlogPostList tag={tag} skip={skipNumber} limit={limitNumber} />
       </Suspense>
     </div>
   );

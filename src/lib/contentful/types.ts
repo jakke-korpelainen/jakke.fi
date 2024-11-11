@@ -16,6 +16,7 @@ export interface ContentfulResult<TQuery> {
 }
 
 export interface ContentfulCollection<T> {
+  total: number;
   items: T[];
 }
 
@@ -25,4 +26,10 @@ export interface ContentfulSys {
     publishedAt: string;
     firstPublishedAt: string;
   };
+}
+
+export interface ContentfulQueryParams {
+  locale: string;
+  skip: number;
+  limit: number;
 }
