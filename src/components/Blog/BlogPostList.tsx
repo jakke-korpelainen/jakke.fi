@@ -1,12 +1,35 @@
+import clsx from "clsx";
 import Link from "next/link";
 
-import { queryAllBlogPosts } from "@/lib/contentful/blogPost";
+import { queryAllBlogPosts, queryAllBlogPostsByTag } from "@/lib/contentful/blogPost";
+import { BlogPostTagQueryParams } from "@/lib/contentful/blogPost/queries";
 
 import { BlogPostListItem } from "./BlogPostListItem";
 
-export async function BlogPostList({ tag }: { tag?: string }) {
-  const items = await queryAllBlogPosts();
-  const filteredItems = tag ? items.filter((item) => item.tags.includes(tag)) : items;
+const DEFAULT_PAGE_SIZE = 15;
+
+const classes = {
+  link: "rounded bg-gray-800 px-4 py-2 text-white",
+  button: {
+    disabled: "pointer-events-none select-none opacity-50",
+  },
+};
+
+async function getFilteredBlogPosts({ tag, skip, limit }: Partial<BlogPostTagQueryParams>) {
+  if (tag) {
+    return await queryAllBlogPostsByTag({ tag, skip, limit });
+  }
+  return await queryAllBlogPosts({ skip, limit });
+}
+
+export async function BlogPostList({ tag, skip = 0, limit = DEFAULT_PAGE_SIZE }: Partial<BlogPostTagQueryParams>) {
+  const { total, items } = (await getFilteredBlogPosts({ tag, skip, limit })) ?? { total: 0, items: [] };
+
+  const totalPages = Math.ceil(total / limit);
+  const currentPage = Math.floor(skip / limit) + 1;
+
+  const isPrevDisabled = currentPage <= 1;
+  const isNextDisabled = currentPage === totalPages;
 
   return (
     <div className="space-y-10">
@@ -20,10 +43,32 @@ export async function BlogPostList({ tag }: { tag?: string }) {
           </p>
         </>
       )}
-      {filteredItems.length === 0 && <p>Sorry, no articles found.</p>}
-      {filteredItems.map((item) => (
+      {total === 0 && <p>Sorry, no articles found.</p>}
+      {items.map((item) => (
         <BlogPostListItem key={item.sys.id} item={item} />
       ))}
+      {total > limit && (
+        <div className="flex items-center justify-between">
+          <Link
+            href={{
+              pathname: "/blog",
+              query: { tag, skip: Math.max(0, skip - limit), limit },
+            }}
+            className={clsx(classes.link, { [classes.button.disabled]: isPrevDisabled })}
+          >
+            Previous
+          </Link>
+          <span>
+            Page {currentPage} of {totalPages}
+          </span>
+          <Link
+            href={{ pathname: "/blog", query: { tag, skip: skip + limit, limit } }}
+            className={clsx(classes.link, { [classes.button.disabled]: isNextDisabled })}
+          >
+            Next
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

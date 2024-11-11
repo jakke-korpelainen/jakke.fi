@@ -15,7 +15,7 @@ interface BlogPageProps {
 
 export async function generateMetadata({ params }: BlogPageProps): Promise<Metadata> {
   const { slug } = params ?? {};
-  const { title } = (await queryBlogPostBySlug(slug)) ?? {};
+  const { title } = (await queryBlogPostBySlug({ slug, limit: 1 })) ?? {};
   return {
     title: `${title} - jakke.fi`,
   };
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: BlogPageProps): Promise<Metad
 
 export default async function BlogPage({ params }: Readonly<BlogPageProps>) {
   const { slug } = params ?? {};
-  const blogPost = await queryBlogPostBySlug(slug);
+  const blogPost = await queryBlogPostBySlug({ slug, limit: 1 });
 
   if (!blogPost) {
     return notFound();
