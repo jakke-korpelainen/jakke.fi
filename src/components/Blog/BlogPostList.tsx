@@ -2,9 +2,9 @@ import clsx from "clsx";
 import Link from "next/link";
 
 import { queryAllBlogPosts, queryAllBlogPostsByTag } from "@/lib/contentful/blogPost";
+import { BlogPostTagQueryParams } from "@/lib/contentful/blogPost/queries";
 
 import { BlogPostListItem } from "./BlogPostListItem";
-import { BlogPostTagQueryParams } from "@/lib/contentful/blogPost/queries";
 
 const DEFAULT_PAGE_SIZE = 15;
 
