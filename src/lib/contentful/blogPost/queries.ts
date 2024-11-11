@@ -18,7 +18,27 @@ export const QUERY_ALL_BLOG_POST = ({
   }
 `;
 
-interface BlogPostQueryParams extends Partial<ContentfulQueryParams> {
+export interface BlogPostTagQueryParams extends Partial<ContentfulQueryParams> {
+  tag: string;
+}
+
+export const QUERY_ALL_BY_BLOG_POST_TAG = ({
+  tag,
+  skip = 0,
+  limit = 100,
+  locale = DEFAULT_LOCALE,
+}: BlogPostTagQueryParams) => `
+  query blogPostCollectionQuery {
+    blogPostCollection(locale: "${locale}", where: { tags_contains_some: "${tag}" }, skip: ${skip}, limit: ${limit}) {
+      total
+      items {
+        ${BLOG_PAGE_FIELDS}
+      }
+    }
+  }
+`;
+
+export interface BlogPostSlugQueryParams extends Partial<ContentfulQueryParams> {
   slug: string;
 }
 
@@ -27,7 +47,7 @@ export const QUERY_BLOG_POST_BY_SLUG = ({
   skip = 0,
   limit = 100,
   locale = DEFAULT_LOCALE,
-}: BlogPostQueryParams) => `
+}: BlogPostSlugQueryParams) => `
   query blogPostBySlugQuery {
     blogPostCollection(locale: "${locale}", where: { slug: "${slug}" }, skip: ${skip}, limit: ${limit}) {
       total
