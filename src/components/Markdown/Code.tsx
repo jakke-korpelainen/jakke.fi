@@ -27,7 +27,7 @@ export function Code({ className, children }: any) {
   const match = /language-(\w+)/.exec(className || "");
   const language = match?.[1];
   if (language === "embed") {
-    return <Embed children={children} />;
+    return <Embed>{children}</Embed>;
   }
 
   return (
