@@ -40,7 +40,7 @@
     --font-size-5xl: 3rem;
     --font-size-6xl: 4rem;
 
-    --animation-wave: wave 2s ease-in-out infinite;
+    --animate-wave: wave 2s ease-in-out infinite;
     --color-before: rgba(114, 255, 255, 0.55);
     --color-white: rgb(232, 230, 227);
     --color-link-normal: rgb(114, 255, 255);
