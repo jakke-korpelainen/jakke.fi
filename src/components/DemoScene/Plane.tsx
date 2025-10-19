@@ -1,8 +1,7 @@
 import { PlaneProps, usePlane } from "@react-three/cannon";
 import { useTexture } from "@react-three/drei";
-import { MeshPhongMaterialProps } from "@react-three/fiber";
 import { useRef } from "react";
-import { Mesh, MeshBasicMaterial } from "three";
+import { Mesh, MeshBasicMaterial, MeshPhongMaterial } from "three";
 
 type PlaneArgs =
   | [
@@ -13,17 +12,27 @@ type PlaneArgs =
     ]
   | undefined;
 
-type LocalPlaneProps = Pick<MeshPhongMaterialProps, "color"> &
-  Pick<PlaneProps, "position" | "rotation"> & { args?: PlaneArgs };
+type LocalPlaneProps = Pick<PlaneProps, "position" | "rotation"> & {
+  args?: PlaneArgs;
+  color?: MeshPhongMaterial["color"];
+};
 
-export function TexturedPlane({ textureSrc, ...props }: LocalPlaneProps & { textureSrc: string }) {
+export function TexturedPlane({
+  textureSrc,
+  ...props
+}: LocalPlaneProps & { textureSrc: string }) {
   const [map] = useTexture([textureSrc]);
   const args: PlaneArgs = [10, 10];
 
   return <Plane args={[...args]} map={map} {...props} />;
 }
 
-export function Plane({ color, map, args, ...props }: LocalPlaneProps & { map?: MeshBasicMaterial["map"] }) {
+export function Plane({
+  color,
+  map,
+  args,
+  ...props
+}: LocalPlaneProps & { map?: MeshBasicMaterial["map"] }) {
   const [ref] = usePlane(() => ({ ...props }), useRef<Mesh>(null));
 
   return (

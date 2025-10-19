@@ -1,6 +1,4 @@
 import { add, parse, startOfDay } from "date-fns";
-import { v4 as uuidv4 } from "uuid";
-
 import { TimeActions, TimeState } from "./types";
 
 export function reducer(state: TimeState, action: TimeActions): TimeState {
@@ -17,7 +15,10 @@ export function reducer(state: TimeState, action: TimeActions): TimeState {
 
       if (action.type === "SET_PAUSE_START_TIME") {
         const startTime = parse(action.value, "HH:mm", new Date());
-        return { ...state, pauses: pauses.concat({ ...pauseInEdit, startTime }) };
+        return {
+          ...state,
+          pauses: pauses.concat({ ...pauseInEdit, startTime }),
+        };
       }
 
       if (action.type === "SET_PAUSE_END_TIME") {
@@ -38,11 +39,19 @@ export function reducer(state: TimeState, action: TimeActions): TimeState {
     case "ADD_PAUSE": {
       return {
         ...state,
-        pauses: state.pauses.concat({ id: uuidv4(), startTime: new Date(), endTime: new Date(), paid: false }),
+        pauses: state.pauses.concat({
+          id: crypto.randomUUID(),
+          startTime: new Date(),
+          endTime: new Date(),
+          paid: false,
+        }),
       };
     }
     case "DELETE_PAUSE": {
-      return { ...state, pauses: state.pauses.filter((pause) => pause.id !== action.id) };
+      return {
+        ...state,
+        pauses: state.pauses.filter((pause) => pause.id !== action.id),
+      };
     }
     default: {
       return state;
