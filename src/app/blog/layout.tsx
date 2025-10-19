@@ -7,7 +7,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className="flex w-full grow flex-col space-y-10 bg-gradient-to-b from-[#121217] to-[#262a2b] py-5 text-white sm:py-10">
       <header className="container mx-auto">
-        <a href="/blog" className="text-2xl text-white no-underline hover:text-white">
+        <Link href="/blog" className="text-2xl text-white no-underline hover:text-white">
           <div className="flex gap-5">
             <Image sizes="" className="object-contain" src="/ball.png" alt="Jakke.fi logo" width={64} height={64} />
             <div>
@@ -15,7 +15,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
               <p className="text-sm sm:text-lg">Blogging mostly about my free-time projects.</p>
             </div>
           </div>
-        </a>
+        </Link>
       </header>
       <div className="flex grow flex-col justify-between space-y-20">
         <div className="container mx-auto grow">{children}</div>
