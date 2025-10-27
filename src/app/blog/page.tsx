@@ -3,8 +3,9 @@ import { Suspense } from "react";
 import { BlogPostList } from "@/components/Blog/BlogPostList";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Blog Articles - jakke.fi",
 };
 

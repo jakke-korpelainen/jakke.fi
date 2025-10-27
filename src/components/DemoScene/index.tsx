@@ -19,7 +19,11 @@ export const SURFACE_TEXTURE = "/face_2024.jpg";
 
 export default function DemoScene() {
   return (
-    <Canvas className="cursor-none select-none" performance={{ min: 0.25, max: 2 }} camera={{ position: [0, 0, 8] }}>
+    <Canvas
+      className="cursor-none select-none"
+      performance={{ min: 0.25, max: 2 }}
+      camera={{ position: [0, 0, 8] }}
+    >
       <EffectComposer>
         <N8AO quality="performance" halfRes />
       </EffectComposer>
@@ -28,19 +32,39 @@ export default function DemoScene() {
         <Cursor />
 
         {/* top */}
-        <Plane color={COLORS.plane} position={[0, 6, 0]} rotation={[0.9, 0, 0]} />
+        <Plane
+          color={COLORS.plane}
+          position={[0, 6, 0]}
+          rotation={[0.9, 0, 0]}
+        />
 
         {/* left */}
-        <Plane color={COLORS.plane} position={[-6, 0, 0]} rotation={[0, 0.9, 0]} />
+        <Plane
+          color={COLORS.plane}
+          position={[-6, 0, 0]}
+          rotation={[0, 0.9, 0]}
+        />
 
         {/* surface */}
-        <TexturedPlane textureSrc={SURFACE_TEXTURE} position={[0, 0, 0]} rotation={[0, 0, 0]} />
+        <TexturedPlane
+          textureSrc={SURFACE_TEXTURE}
+          position={[0, 0, 0]}
+          rotation={[0, 0, 0]}
+        />
 
         {/* right */}
-        <Plane color={COLORS.plane} position={[6, 0, 0]} rotation={[0, -0.9, 0]} />
+        <Plane
+          color={COLORS.plane}
+          position={[6, 0, 0]}
+          rotation={[0, -0.9, 0]}
+        />
 
         {/* bottom */}
-        <Plane color={COLORS.plane} position={[0, -6, 0]} rotation={[-0.9, 0, 0]} />
+        <Plane
+          color={COLORS.plane}
+          position={[0, -6, 0]}
+          rotation={[-0.9, 0, 0]}
+        />
         <InstancedSpheres />
       </Physics>
     </Canvas>

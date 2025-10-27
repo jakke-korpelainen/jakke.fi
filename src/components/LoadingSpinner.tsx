@@ -7,11 +7,19 @@ export function LoadingSpinner() {
     <svg className="animate-spin" height={SIZE} width={SIZE}>
       <polygon
         points={`1,${SIZE / 2} ${SIZE / 2},1 ${SIZE / 2},${SIZE / 2}`}
-        style={{ fill: "transparent", stroke: COLOR, strokeWidth: STROKE_WIDTH }}
+        style={{
+          fill: "transparent",
+          stroke: COLOR,
+          strokeWidth: STROKE_WIDTH,
+        }}
       ></polygon>
       <polygon
         points={`${SIZE / 2},${SIZE / 2}, ${SIZE / 2},${SIZE} ${SIZE},${SIZE / 2}`}
-        style={{ fill: "transparent", stroke: COLOR, strokeWidth: STROKE_WIDTH }}
+        style={{
+          fill: "transparent",
+          stroke: COLOR,
+          strokeWidth: STROKE_WIDTH,
+        }}
       ></polygon>
     </svg>
   );

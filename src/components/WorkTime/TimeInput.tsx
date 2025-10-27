@@ -110,7 +110,10 @@ export const TimeInput = ({
         <>
           <div className="right-5 top-5 order-4 my-5 flex gap-5 lg:absolute lg:order-none lg:my-5">
             <div className="flex gap-2">
-              <label className={clsx(labelClass, radioLabelClass)} htmlFor={`${id}-paid-true`}>
+              <label
+                className={clsx(labelClass, radioLabelClass)}
+                htmlFor={`${id}-paid-true`}
+              >
                 Paid
                 <input
                   id={`${id}-paid-true`}
@@ -125,7 +128,10 @@ export const TimeInput = ({
             </div>
 
             <div className="flex gap-2">
-              <label className={clsx(labelClass, radioLabelClass)} htmlFor={`${id}-paid-false`}>
+              <label
+                className={clsx(labelClass, radioLabelClass)}
+                htmlFor={`${id}-paid-false`}
+              >
                 Unpaid
                 <input
                   id={`${id}-paid-false`}
@@ -139,7 +145,9 @@ export const TimeInput = ({
             </div>
           </div>
           <div className="my-5 flex flex-col lg:my-0">
-            <span className={clsx({ ["mb-2"]: paid && excess }, labelClass)}>Duration</span>
+            <span className={clsx({ ["mb-2"]: paid && excess }, labelClass)}>
+              Duration
+            </span>
 
             {paid && excess !== null ? (
               <div className="w-56">
@@ -152,7 +160,8 @@ export const TimeInput = ({
                   <span>{MAXIMUM_PAID_BREAK} minutes</span>
                 </div>
                 <div className={durationGroupClass}>
-                  <span className={labelClass}>unpaid</span> <span className="text-red-400">{excess} minutes</span>
+                  <span className={labelClass}>unpaid</span>{" "}
+                  <span className="text-red-400">{excess} minutes</span>
                 </div>
               </div>
             ) : (
@@ -164,7 +173,10 @@ export const TimeInput = ({
             <div className="bottom-5 right-5 order-5 lg:absolute lg:order-none">
               <button
                 onClick={onDelete}
-                className={clsx("border-red-700 text-base uppercase text-red-700", buttonClass)}
+                className={clsx(
+                  "border-red-700 text-base uppercase text-red-700",
+                  buttonClass,
+                )}
                 type="button"
               >
                 ✖️ Delete

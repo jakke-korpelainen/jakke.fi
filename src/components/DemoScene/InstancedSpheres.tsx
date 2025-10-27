@@ -24,7 +24,13 @@ export function InstancedSpheres({ number = DEFAULT_SPHERE_COUNT }) {
   return (
     <instancedMesh ref={ref} args={[undefined, undefined, number]}>
       <sphereGeometry args={[SPHERE_SIZE, 16, 16]} />
-      <meshPhongMaterial shininess={50} depthTest emissive={COLORS.sphere} emissiveIntensity={0.5} map={texture} />
+      <meshPhongMaterial
+        shininess={50}
+        depthTest
+        emissive={COLORS.sphere}
+        emissiveIntensity={0.5}
+        map={texture}
+      />
     </instancedMesh>
   );
 }

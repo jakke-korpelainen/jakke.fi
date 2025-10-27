@@ -1,7 +1,10 @@
 import clsx from "clsx";
 import Link from "next/link";
 
-import { queryAllBlogPosts, queryAllBlogPostsByTag } from "@/lib/contentful/blogPost";
+import {
+  queryAllBlogPosts,
+  queryAllBlogPostsByTag,
+} from "@/lib/contentful/blogPost";
 import { BlogPostTagQueryParams } from "@/lib/contentful/blogPost/queries";
 
 import { BlogPostListItem } from "./BlogPostListItem";
@@ -15,15 +18,27 @@ const classes = {
   },
 };
 
-async function getFilteredBlogPosts({ tag, skip, limit }: Partial<BlogPostTagQueryParams>) {
+async function getFilteredBlogPosts({
+  tag,
+  skip,
+  limit,
+}: Partial<BlogPostTagQueryParams>) {
   if (tag) {
     return await queryAllBlogPostsByTag({ tag, skip, limit });
   }
   return await queryAllBlogPosts({ skip, limit });
 }
 
-export async function BlogPostList({ tag, skip = 0, limit = DEFAULT_PAGE_SIZE }: Partial<BlogPostTagQueryParams>) {
-  const { total, items } = (await getFilteredBlogPosts({ tag, skip, limit })) ?? { total: 0, items: [] };
+export async function BlogPostList({
+  tag,
+  skip = 0,
+  limit = DEFAULT_PAGE_SIZE,
+}: Partial<BlogPostTagQueryParams>) {
+  const { total, items } = (await getFilteredBlogPosts({
+    tag,
+    skip,
+    limit,
+  })) ?? { total: 0, items: [] };
 
   const totalPages = Math.ceil(total / limit);
   const currentPage = Math.floor(skip / limit) + 1;
@@ -36,7 +51,8 @@ export async function BlogPostList({ tag, skip = 0, limit = DEFAULT_PAGE_SIZE }:
       {tag && (
         <>
           <p className="mb-10">
-            Filtering with tag: <span className="ml-2 font-mono text-base uppercase">{tag}</span>{" "}
+            Filtering with tag:{" "}
+            <span className="ml-2 font-mono text-base uppercase">{tag}</span>{" "}
             <Link className="text-base no-underline" href="/blog">
               ❌
             </Link>
@@ -54,7 +70,9 @@ export async function BlogPostList({ tag, skip = 0, limit = DEFAULT_PAGE_SIZE }:
               pathname: "/blog",
               query: { tag, skip: Math.max(0, skip - limit), limit },
             }}
-            className={clsx(classes.link, { [classes.button.disabled]: isPrevDisabled })}
+            className={clsx(classes.link, {
+              [classes.button.disabled]: isPrevDisabled,
+            })}
           >
             Previous
           </Link>
@@ -62,8 +80,13 @@ export async function BlogPostList({ tag, skip = 0, limit = DEFAULT_PAGE_SIZE }:
             Page {currentPage} of {totalPages}
           </span>
           <Link
-            href={{ pathname: "/blog", query: { tag, skip: skip + limit, limit } }}
-            className={clsx(classes.link, { [classes.button.disabled]: isNextDisabled })}
+            href={{
+              pathname: "/blog",
+              query: { tag, skip: skip + limit, limit },
+            }}
+            className={clsx(classes.link, {
+              [classes.button.disabled]: isNextDisabled,
+            })}
           >
             Next
           </Link>
