@@ -22,7 +22,7 @@
 }
 
 @theme {
-    --breakpoint-xs: 0px;
+    --breakpoint-xs: initial;
     --breakpoint-sm: 600px;
     --breakpoint-md: 960px;
     --breakpoint-lg: 1280px;

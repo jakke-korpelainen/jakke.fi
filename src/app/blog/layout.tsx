@@ -3,16 +3,32 @@ import Link from "next/link";
 
 import { ScrollToTop } from "@/components/ScrollToTop";
 
-export default function BlogLayout({ children }: { children: React.ReactNode }) {
+interface BlogLayoutProps {
+  children: React.ReactNode;
+}
+
+export default function BlogLayout({ children }: BlogLayoutProps) {
   return (
     <div className="flex w-full grow flex-col space-y-10 bg-gradient-to-b from-[#121217] to-[#262a2b] py-5 text-white sm:py-10">
       <header className="container mx-auto">
-        <Link href="/blog" className="text-2xl text-white no-underline hover:text-white">
+        <Link
+          href="/blog"
+          className="text-2xl text-white no-underline hover:text-white"
+        >
           <div className="flex gap-5">
-            <Image sizes="" className="object-contain" src="/ball.png" alt="Jakke.fi logo" width={64} height={64} />
+            <Image
+              sizes=""
+              className="object-contain"
+              src="/ball.png"
+              alt="Jakke.fi logo"
+              width={64}
+              height={64}
+            />
             <div>
               <span className="text-xl sm:text-xl">jakke.fi/blog</span>
-              <p className="text-sm sm:text-lg">Blogging mostly about my free-time projects.</p>
+              <p className="text-sm sm:text-lg">
+                Blogging mostly about my free-time projects.
+              </p>
             </div>
           </div>
         </Link>
