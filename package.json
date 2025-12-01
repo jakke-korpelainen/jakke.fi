@@ -14,7 +14,7 @@
     "postprocessing": "^6.37.8",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-markdown": "^9.0.1",
+    "react-markdown": "^10.1.0",
     "react-syntax-highlighter": "^15.6.1",
     "schema-dts": "^1.1.2",
     "three": "^0.180.0"
