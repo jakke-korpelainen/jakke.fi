@@ -11,11 +11,15 @@ export async function BlogPostListItem({ item }: { item: BlogPost }) {
       <div>
         <Link className="no-underline" href={`/blog/${item.slug}`}>
           <h3 className="mb-0 inline-block before:hidden" key={item.sys.id}>
-            <span className="mr-5 pb-1 font-mono text-base font-medium uppercase">{item.type}</span>
+            <span className="mr-5 pb-1 font-mono text-base font-medium uppercase">
+              {item.type}
+            </span>
             {item.title}
           </h3>
         </Link>
-        <p className="mb-2 text-lg">Published on {formatDateString(item.sys.firstPublishedAt)}</p>
+        <p className="mb-2 text-lg">
+          Published on {formatDateString(item.sys.firstPublishedAt)}
+        </p>
         <Tags tags={item.tags} />
       </div>
     </div>

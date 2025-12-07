@@ -14,7 +14,9 @@ interface BlogPageProps {
   };
 }
 
-const createBlogPostingJsonLd = (blogPosting: BlogPost): WithContext<BlogPosting> => {
+const createBlogPostingJsonLd = (
+  blogPosting: BlogPost,
+): WithContext<BlogPosting> => {
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -31,7 +33,9 @@ const createBlogPostingJsonLd = (blogPosting: BlogPost): WithContext<BlogPosting
   };
 };
 
-export async function generateMetadata({ params }: BlogPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: BlogPageProps): Promise<Metadata> {
   const { slug } = params ?? {};
   const { title } = (await queryBlogPostBySlug({ slug, limit: 1 })) ?? {};
   return {
@@ -51,8 +55,17 @@ export default async function BlogPage({ params }: Readonly<BlogPageProps>) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Blog", href: "/blog" }, { label: blogPost.slug }]} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Blog", href: "/blog" },
+          { label: blogPost.slug },
+        ]}
+      />
 
       <article className="mt-10 flex flex-col space-y-10">
         <header className="space-y-10">
@@ -73,7 +86,8 @@ export default async function BlogPage({ params }: Readonly<BlogPageProps>) {
               </p>
             )}
             <p>
-              <span className="font-medium">@Author:</span> <span>Jakke Korpelainen</span>
+              <span className="font-medium">@Author:</span>{" "}
+              <span>Jakke Korpelainen</span>
             </p>
           </div>
           <div>
