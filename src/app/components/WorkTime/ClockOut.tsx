@@ -1,3 +1,5 @@
+"use client";
+
 import clsx from "clsx";
 import { format, isPast } from "date-fns";
 import Image from "next/image";
