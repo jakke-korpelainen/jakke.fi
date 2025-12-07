@@ -1,7 +1,8 @@
 import { PlaneProps, usePlane } from "@react-three/cannon";
+import { useTexture } from "@react-three/drei";
 import { MeshPhongMaterialProps } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
-import { Mesh, Texture, TextureLoader } from "three";
+import { useRef } from "react";
+import { Mesh, MeshBasicMaterial } from "three";
 
 type PlaneArgs =
   | [
@@ -12,29 +13,23 @@ type PlaneArgs =
     ]
   | undefined;
 
-type OurPlaneProps = { image?: string } & Pick<MeshPhongMaterialProps, "color"> &
-  Pick<PlaneProps, "position" | "rotation">;
+type LocalPlaneProps = Pick<MeshPhongMaterialProps, "color"> &
+  Pick<PlaneProps, "position" | "rotation"> & { args?: PlaneArgs };
 
-export function Plane({ color, image, ...props }: OurPlaneProps) {
+export function TexturedPlane({ textureSrc, ...props }: LocalPlaneProps & { textureSrc: string }) {
+  const [map] = useTexture([textureSrc]);
+  const args: PlaneArgs = [10, 10];
+
+  return <Plane args={[...args]} map={map} {...props} />;
+}
+
+export function Plane({ color, map, args, ...props }: LocalPlaneProps & { map?: MeshBasicMaterial["map"] }) {
   const [ref] = usePlane(() => ({ ...props }), useRef<Mesh>(null));
 
-  const texture = useMemo(() => {
-    if (image) {
-      const textureLoader = new TextureLoader();
-      return textureLoader.load(image, (texture: Texture) => {
-        texture.center.set(0.5, 0.5);
-      });
-    }
-    return undefined;
-  }, [image]);
-
-  const imageWidth: PlaneArgs = [10, 10];
-  const normalWidth: PlaneArgs = [100, 100];
-
   return (
-    <mesh ref={ref} receiveShadow>
-      <planeGeometry args={texture ? [...imageWidth] : [...normalWidth]} />
-      <meshBasicMaterial color={texture ? undefined : color} map={texture} />
+    <mesh ref={ref}>
+      <planeGeometry args={[...(args ?? [100, 100])]} />
+      <meshPhongMaterial color={color} map={map} />
     </mesh>
   );
 }
