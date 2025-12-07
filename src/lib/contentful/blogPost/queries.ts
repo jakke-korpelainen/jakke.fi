@@ -9,7 +9,7 @@ export const QUERY_ALL_BLOG_POST = ({
   locale = DEFAULT_LOCALE,
 }: Partial<ContentfulQueryParams>) => `
   query blogPostCollectionQuery {
-    blogPostCollection(locale: "${locale}", skip: ${skip}, limit: ${limit}) {
+    blogPostCollection(locale: "${locale}", skip: ${skip}, limit: ${limit}, order: [sys_firstPublishedAt_DESC]) {
       total
       items {
         ${BLOG_PAGE_FIELDS}
@@ -29,7 +29,7 @@ export const QUERY_ALL_BY_BLOG_POST_TAG = ({
   locale = DEFAULT_LOCALE,
 }: BlogPostTagQueryParams) => `
   query blogPostCollectionQuery {
-    blogPostCollection(locale: "${locale}", where: { tags_contains_some: "${tag}" }, skip: ${skip}, limit: ${limit}) {
+    blogPostCollection(locale: "${locale}", where: { tags_contains_some: "${tag}" }, skip: ${skip}, limit: ${limit}, order: [sys_firstPublishedAt_DESC] ) {
       total
       items {
         ${BLOG_PAGE_FIELDS}
