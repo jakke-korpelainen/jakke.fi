@@ -19,7 +19,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
       </header>
       <div className="flex grow flex-col justify-between">
         <div className="container mx-auto grow">{children}</div>
-        <div className="container mx-auto flex flex-col items-center justify-between gap-10 sm:flex-row">
+        <div className="container mx-auto flex flex-col-reverse justify-between gap-10 sm:flex-row">
           <div className="select-none text-gray-400">&copy; jakke.fi</div>
           <ul className="flex flex-col gap-5 sm:inline-flex sm:flex-row [&>li>a]:no-underline [&>li]:text-base">
             <li>
