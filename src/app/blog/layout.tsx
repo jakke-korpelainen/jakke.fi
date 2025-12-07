@@ -5,7 +5,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex w-full grow flex-col space-y-10 bg-gradient-to-b from-[#121217] to-[#262a2b] p-5 text-white sm:p-10">
+    <div className="flex w-full grow flex-col space-y-10 bg-gradient-to-b from-[#121217] to-[#262a2b] py-5 text-white sm:py-10">
       <header className="container mx-auto">
         <a href="/blog" className="text-2xl text-white no-underline hover:text-white">
           <div className="flex gap-5">
@@ -17,7 +17,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
           </div>
         </a>
       </header>
-      <div className="flex grow flex-col justify-between">
+      <div className="flex grow flex-col justify-between space-y-20">
         <div className="container mx-auto grow">{children}</div>
         <div className="container mx-auto flex flex-col-reverse justify-between gap-10 sm:flex-row">
           <div className="select-none text-gray-400">&copy; jakke.fi</div>
