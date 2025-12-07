@@ -69,7 +69,7 @@ export const TimeInput = ({
 
   return (
     <div>
-      <div className="flex">
+      <div className="flex flex-col lg:flex-row">
         <div className="flex grow gap-5">
           <div className={inputGroupClass}>
             <label className={labelClass} htmlFor={`${id}-start`}>
@@ -104,17 +104,11 @@ export const TimeInput = ({
             </>
           )}
         </div>
-
-        {onDelete && (
-          <button onClick={onDelete} className={clsx(buttonClass, "absolute bottom-5 right-5")} type="button">
-            Delete
-          </button>
-        )}
       </div>
 
       {endTime && (
         <>
-          <div className="absolute right-5 top-5 flex gap-5">
+          <div className="right-5 top-5 order-4 my-5 flex gap-5 lg:absolute lg:order-none lg:my-5">
             <div className="flex gap-2">
               <label className={clsx(labelClass, radioLabelClass)} htmlFor={`${id}-paid-true`}>
                 Paid
@@ -144,7 +138,7 @@ export const TimeInput = ({
               </label>
             </div>
           </div>
-          <div className="flex flex-col">
+          <div className="my-5 flex flex-col lg:my-0">
             <span className={clsx({ ["mb-2"]: paid && excess }, labelClass)}>Duration</span>
 
             {paid && excess !== null ? (
@@ -158,13 +152,25 @@ export const TimeInput = ({
                   <span>{maximumPaidBreak} minutes</span>
                 </div>
                 <div className={durationGroupClass}>
-                  <span className={labelClass}>unpaid</span> <span className="text-red-700">{excess} minutes</span>
+                  <span className={labelClass}>unpaid</span> <span className="text-red-400">{excess} minutes</span>
                 </div>
               </div>
             ) : (
               durationText
             )}
           </div>
+
+          {onDelete && (
+            <div className="bottom-5 right-5 order-5 lg:absolute lg:order-none">
+              <button
+                onClick={onDelete}
+                className={clsx("border-red-700 text-base uppercase text-red-700", buttonClass)}
+                type="button"
+              >
+                ✖️ Delete
+              </button>
+            </div>
+          )}
         </>
       )}
     </div>
