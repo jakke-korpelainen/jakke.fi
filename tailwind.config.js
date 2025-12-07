@@ -27,10 +27,26 @@ export const theme = {
     "6xl": "4rem",
   },
   extend: {
+    keyframes: {
+      wave: {
+        "0%": {
+          transform: "translateY(0)",
+        },
+        "60%": {
+          transform: "translateY(-0.5rem)",
+        },
+        "100%": {
+          transform: "translateY(0)",
+        },
+      },
+    },
+    animation: {
+      wave: "wave 3s ease-in-out infinite",
+    },
     colors: {
       white: "rgb(232, 230, 227)",
       before: "rgba(114, 255, 255, 0.55)",
-      link: "rgb(114, 255, 255)",
+      link: { normal: "rgb(114, 255, 255)", hover: "orange" },
     },
     fontFamily: {
       // Be sure to update these if you change your fonts.

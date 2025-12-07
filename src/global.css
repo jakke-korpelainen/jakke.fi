@@ -4,16 +4,16 @@
 
 @layer base {
   a {
-    @apply text-link underline underline-offset-4 transition-all ease-in;
+    @apply text-link-normal underline underline-offset-4 transition-all ease-in;
   }
   a:hover {
-    @apply underline-offset-8;
+    @apply text-link-hover underline-offset-8;
   }
   h1 {
-    @apply before:text-before mb-1 mb-20 text-6xl font-semibold leading-[5.5rem] tracking-tight antialiased before:mr-4 before:inline-block before:content-['_>'] xl:text-[6rem];
+    @apply mb-8 text-6xl font-black leading-[5.5rem] tracking-tight antialiased before:mr-4 before:inline-block before:text-before before:content-['_>'] xl:mb-14 xl:text-[6rem] max:mb-20;
   }
   h2 {
-    @apply before:text-before mb-2 mb-5 text-4xl font-semibold leading-[4rem] antialiased before:mr-1 before:inline-block before:content-['_--'] xl:text-[3.5rem];
+    @apply mb-2 mb-5 text-4xl font-semibold leading-[4rem] antialiased before:mr-1 before:inline-block before:text-before before:content-['_--'] xl:text-[3.5rem];
   }
   p {
     @apply text-base md:text-xl xl:text-2xl;

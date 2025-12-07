@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { Metadata } from "next";
 import Image from "next/image";
+import { WaveText } from "./components/WaveText";
 
 interface TwoColumnProps {
   row?: boolean;
@@ -30,7 +31,9 @@ const TwoColumn = ({ heading, children, className, row = true }: TwoColumnProps)
 export default function Page() {
   return (
     <div className="grow">
-      <h1 className="before:text-asdf before:mr-4 before:inline-block before:content-['_>']">hello</h1>
+      <h1>
+        <WaveText emojiIndex={1} words={["Hello"]} />
+      </h1>
 
       <div className="flex flex-col gap-5">
         <TwoColumn heading="what">
