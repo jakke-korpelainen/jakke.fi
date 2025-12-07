@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "description": "Homepage of the author",
   "dependencies": {
+    "@next/third-parties": "^15.0.3",
     "@react-three/cannon": "^6.6.0",
     "@react-three/drei": "^9.115.0",
     "@react-three/fiber": "^8.17.10",
