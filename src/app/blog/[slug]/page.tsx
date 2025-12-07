@@ -31,7 +31,7 @@ export default async function BlogPage({ params }: Readonly<BlogPageProps>) {
 
   return (
     <>
-      <Breadcrumb items={[{ label: "Location" }, { label: "Blog", href: "/blog" }, { label: blogPost.slug }]} />
+      <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Blog", href: "/blog" }, { label: blogPost.slug }]} />
 
       <article className="mt-10 flex flex-col space-y-10">
         <header className="space-y-10">
