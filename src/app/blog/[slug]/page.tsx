@@ -1,12 +1,12 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { BlogPosting, WithContext } from "schema-dts";
 
 import { Tags } from "@/components/Blog/Tags";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { Markdown } from "@/components/Markdown";
 import { BlogPost, queryBlogPostBySlug } from "@/lib/contentful/blogPost";
 import { formatDateString } from "@/lib/date";
-import { BlogPosting, WithContext } from "schema-dts";
 
 interface BlogPageProps {
   params: {
