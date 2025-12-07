@@ -1,7 +1,7 @@
 import { useSphere } from "@react-three/cannon";
+import { useLoader } from "@react-three/fiber";
 import { useRef } from "react";
 import { InstancedMesh, TextureLoader } from "three";
-import { useLoader } from "@react-three/fiber";
 
 const DEFAULT_SPHERE_COUNT = 8;
 const IMAGE_SRC = "/face_2024.jpg";
@@ -20,7 +20,7 @@ export function InstancedSpheres({ number = DEFAULT_SPHERE_COUNT }) {
 
   return (
     <instancedMesh ref={ref} castShadow receiveShadow args={[undefined, undefined, number]}>
-      <sphereGeometry args={[SIZE, 16, 16]}/>
+      <sphereGeometry args={[SIZE, 16, 16]} />
       <meshPhongMaterial emissive="teal" emissiveIntensity={0.5} map={texture} />
     </instancedMesh>
   );
