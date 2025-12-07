@@ -45,6 +45,10 @@ const Heading = styled.h1`
     color: rgb(0, 128, 128, 0.55);
     content: "> ";
   }
+
+  @media (max-width: 992px) {
+    margin-top: 0;
+  }
 `
 
 const StyledAbout = styled.div`
