@@ -1,5 +1,3 @@
-import { DEFAULT_LOCALE } from "@/lib/locale";
-
 import { fetchContentfulGraphQL } from "..";
 import type { ContentfulCollection, ContentfulQueryParams, ContentfulSys } from "../types";
 import {
