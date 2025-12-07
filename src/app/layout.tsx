@@ -1,5 +1,6 @@
-import clsx from "clsx";
 import "@/global.css";
+
+import clsx from "clsx";
 import Image from "next/image";
 
 import { karla } from "@/fonts";
