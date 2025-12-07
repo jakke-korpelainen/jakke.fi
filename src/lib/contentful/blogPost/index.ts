@@ -14,7 +14,7 @@ export interface BlogPost extends ContentfulSys {
    * Type
    * @example "Report"
    */
-  type: "Report" | "Tutorial" | "Article" | (string & {});
+  type: "Report" | "Tutorial" | "Article";
   /**
    * Slug
    * @example "my-blog-post"
