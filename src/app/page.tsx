@@ -60,7 +60,7 @@ export default function Page() {
                 width={240}
                 height={240}
                 className="lg:64 lg:64 m-0 m-5 h-20 w-20 rounded-full object-cover sm:h-32 sm:w-32 md:h-48 md:w-48 lg:hidden"
-                src="/face.jpg"
+                src="/face_2024.jpg"
                 alt="Image of Jakke Korpelainen"
               />
               <p>
