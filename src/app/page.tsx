@@ -57,7 +57,14 @@ export default function Page() {
           </p>
         </TwoColumn>
         <TwoColumn row={false} heading="where">
-          <Image className="object-fill" width={1200} height={400} alt="Logo of Loihde Factor" src="/employer.jpg" />
+          <Image
+            priority
+            className="object-fill"
+            width={1200}
+            height={400}
+            alt="Logo of Loihde Factor"
+            src="/employer.jpg"
+          />
         </TwoColumn>
       </div>
     </div>
