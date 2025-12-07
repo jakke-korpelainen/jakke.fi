@@ -10,8 +10,8 @@ export const Cursor = () => {
   const [ref, api] = useSphere(() => ({ mass: 500, args: [size], position: [0, 0, 10000], type: "Static" }), cursor);
 
   useFrame(({ mouse, viewport: { height, width } }) => {
-    const x = mouse.x * width;
-    const y = mouse.y * height;
+    const x = (mouse.x * width) / 1.6;
+    const y = (mouse.y * height) / 1.6;
     api.position.set(x, y, 0);
   });
 
