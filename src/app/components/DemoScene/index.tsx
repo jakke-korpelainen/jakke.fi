@@ -2,8 +2,7 @@
 
 import { Physics } from "@react-three/cannon";
 import { Canvas } from "@react-three/fiber";
-import { ASCII, EffectComposer, N8AO } from "@react-three/postprocessing";
-import { useMemo, useState } from "react";
+import { EffectComposer, N8AO } from "@react-three/postprocessing";
 
 import { Cursor } from "./Cursor";
 import { InstancedSpheres } from "./InstancedSpheres";
@@ -23,33 +22,22 @@ export const colors = {
 const imageSrc = "/face_2024.jpg";
 
 export default function DemoScene() {
-  const [asciiEnabled, setAsciiEnabled] = useState(true);
-  const changeShader = () => {
-    setAsciiEnabled(!asciiEnabled);
-  };
-
-  const postProcessing = useMemo(() => {
-    return (
-      <EffectComposer>
-        {asciiEnabled ? (
-          <ASCII characters="jakeorplin" invert cellSize={25} color={colors.teal} fontSize={80} />
-        ) : (
-          <></>
-        )}
-        <N8AO quality="performance" halfRes color={colors.gray} aoRadius={5} distanceFalloff={5} intensity={2.5} />
-      </EffectComposer>
-    );
-  }, [asciiEnabled]);
 
   return (
     <Canvas
-      onClick={changeShader}
       className="cursor-none select-none"
       dpr={[0.5, 1]}
       shadows
       camera={{ position: [0, 0, 8] }}
     >
-      {postProcessing}
+      <EffectComposer>
+        {/* {asciiEnabled ? (
+          <ASCII characters="jakeorplin" invert cellSize={25} color={colors.teal} fontSize={80} />
+        ) : (
+          <></>
+        )} */}
+        <N8AO quality="performance" halfRes color={colors.gray} aoRadius={5} distanceFalloff={5} intensity={2.5} />
+      </EffectComposer>
       <hemisphereLight intensity={2.5} />
       <spotLight
         position={[0, 0, 30]}
