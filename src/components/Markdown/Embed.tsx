@@ -19,8 +19,6 @@ const classes = {
       md:[&>iframe]:static
       md:[&>iframe]:top-auto
       md:[&>iframe]:left-auto
-      md:[&>iframe]:w-auto 
-      md:[&>iframe]:h-auto
       `,
   },
 };
