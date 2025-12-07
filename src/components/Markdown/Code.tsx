@@ -24,6 +24,9 @@ export function Code({ className, children }: any) {
 
   const match = /language-(\w+)/.exec(className || "");
   const language = match?.[1];
+  if (language === "embed") {
+    return <div dangerouslySetInnerHTML={{ __html: children }} />;
+  }
 
   return (
     <div className="relative grid">
