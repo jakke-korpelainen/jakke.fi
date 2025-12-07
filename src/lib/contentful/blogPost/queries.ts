@@ -1,7 +1,7 @@
 import { DEFAULT_LOCALE } from "@/lib/locale";
 
-import { BLOG_PAGE_FIELDS } from "./fields";
 import { ContentfulQueryParams } from "../types";
+import { BLOG_PAGE_FIELDS } from "./fields";
 
 export const QUERY_ALL_BLOG_POST = ({
   skip = 0,

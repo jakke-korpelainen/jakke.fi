@@ -1,9 +1,9 @@
+import clsx from "clsx";
 import Link from "next/link";
 
 import { queryAllBlogPosts } from "@/lib/contentful/blogPost";
 
 import { BlogPostListItem } from "./BlogPostListItem";
-import clsx from "clsx";
 
 const DEFAULT_PAGE_SIZE = 15;
 
