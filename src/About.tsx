@@ -1,6 +1,6 @@
 import styled from "styled-components"
-import employer from "./employer.jpg"
-import face from "./face.jpg"
+import employer from "./images/employer.jpg"
+import face from "./images/face.jpg"
 
 export const About = () => {
   return (
