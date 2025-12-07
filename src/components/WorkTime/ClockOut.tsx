@@ -29,7 +29,7 @@ export const ClockOut = ({ ...state }: TimeState) => {
     return () => clearInterval(interval);
   }, []);
 
-  let clockOutEl: JSX.Element | null = null;
+  let clockOutEl: React.ReactNode | null = null;
   let clockOutValue = null;
   let clockOutDate = null;
 
@@ -74,7 +74,9 @@ export const ClockOut = ({ ...state }: TimeState) => {
         {clockOutValue && (
           <>
             <p>{leaveText}</p>
-            <h1 className="lg:text-7xl mb-0 leading-[2rem] lg:text-[6rem] lg:leading-[7rem]">{clockOutValue}</h1>
+            <h1 className="lg:text-7xl mb-0 leading-[2rem] lg:text-[6rem] lg:leading-[7rem]">
+              {clockOutValue}
+            </h1>
           </>
         )}
         {clockOutEl}
