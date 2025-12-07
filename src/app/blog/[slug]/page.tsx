@@ -38,6 +38,9 @@ export default async function BlogPage({ params }: Readonly<BlogPageProps>) {
           <h1>{blogPost.title}</h1>
           <div className="flex flex-col font-mono [&>p]:uppercase">
             <p>
+              <span className="font-medium">@Type:</span> {blogPost.type}
+            </p>
+            <p>
               <span className="font-medium">@Published:</span> {formatDateString(blogPost.sys.firstPublishedAt)}
             </p>
             {/* if has been updated */}
