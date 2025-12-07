@@ -1,7 +1,7 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 interface ISplashProps {
-  image: string
+  image: string;
 }
 
 export const SplashWrapper = styled.div`
@@ -16,7 +16,7 @@ export const SplashWrapper = styled.div`
   @media (max-width: 1200px) {
     display: none;
   }
-`
+`;
 
 export const SplashImage = styled.div<ISplashProps>`
   background: url(${(props) => props.image}) no-repeat center center;
@@ -24,4 +24,4 @@ export const SplashImage = styled.div<ISplashProps>`
 
   width: 100%;
   height: 100%;
-`
+`;
