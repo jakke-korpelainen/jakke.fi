@@ -14,7 +14,12 @@ const CURSOR_Z = 0.4;
 export const Cursor = () => {
   const [matcap] = useTexture([CURSOR_MATCAP]);
   const [ref, api] = useSphere(
-    () => ({ mass: 2000, args: [CURSOR_SIZE], position: [0, 0, CURSOR_Z], type: "Static" }),
+    () => ({
+      mass: 2000,
+      args: [CURSOR_SIZE],
+      position: [0, 0, CURSOR_Z],
+      type: "Static",
+    }),
     cursor,
   );
 

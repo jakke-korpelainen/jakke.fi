@@ -1,47 +1,99 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@keyframes wave {
+    0% {
+        text-shadow:
+            0 0 0.5rem rgba(255, 255, 255, 0.05),
+            0 0 2rem rgba(255, 255, 255, 0.05);
+        transform: translate3d(0, 0, 0);
+    }
+    50% {
+        text-shadow:
+            0 0 0.5rem rgba(255, 255, 255, 0.55),
+            0 0 2rem rgba(0, 150, 0, 0.25);
+        transform: translate3d(0, -0.75rem, 0);
+    }
+    100% {
+        text-shadow:
+            0 0 0.5rem rgba(255, 255, 255, 0.05),
+            0 0 2rem rgba(255, 255, 255, 0.05);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@theme {
+    --breakpoint-xs: 0px;
+    --breakpoint-sm: 600px;
+    --breakpoint-md: 960px;
+    --breakpoint-lg: 1280px;
+    --breakpoint-xl: 1600px;
+
+    --font-size-xxs: 0.625rem;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
+    --font-size-6xl: 4rem;
+
+    --animate-wave: wave 2s ease-in-out infinite;
+    --color-before: rgba(114, 255, 255, 0.55);
+    --color-white: rgb(232, 230, 227);
+    --color-link-normal: rgb(114, 255, 255);
+    --color-link-darker: rgb(77, 176, 176);
+    --color-link-hover: orange;
+    --transition-text-shadow: text-shadow 0.5s ease;
+}
+
+@utility container {
+    margin-inline: auto;
+    padding-inline: 2rem;
+}
 
 @layer base {
-  a {
-    @apply text-link-normal underline underline-offset-4 transition-all ease-in;
-  }
-  a:hover {
-    @apply text-link-hover underline-offset-8;
-  }
-  button:hover {
-    @apply text-link-hover underline-offset-8 transition-all ease-in;
-  }
-  h1 {
-    @apply relative mb-2 flex gap-5 text-3xl font-black leading-[2.5rem] tracking-tight before:inline-block before:text-before before:content-['_>'] md:text-6xl md:leading-[4rem] lg:mb-4 lg:leading-[5.5rem] xl:mb-14 xl:text-[6rem];
-  }
-  h2 {
-    @apply mb-5 text-xl font-semibold leading-[4rem] before:mr-1 before:inline-block before:text-before before:content-['_--'] lg:text-2xl xl:text-[3.5rem];
-  }
-  h3 {
-    @apply mb-2 text-xl font-semibold leading-[2rem] before:mr-1 before:inline-block before:text-before before:content-['_--'];
-  }
-  p,
-  li {
-    @apply text-base md:text-xl xl:text-2xl;
-  }
-  article h1,
-  article h2,
-  article h3,
-  article h4,
-  article h5,
-  article h6,
-  article a {
-    @apply break-words;
-  }
-  article p + h2,
-  article p + h3 {
-    @apply mt-10;
-  }
-  article p + p {
-    @apply mt-5;
-  }
-  article h3 {
-    @apply mb-5 mt-3;
-  }
+    a {
+        @apply text-link-normal underline underline-offset-4 transition-all ease-in;
+    }
+    a:hover {
+        @apply text-link-hover underline-offset-8;
+    }
+    button:hover {
+        @apply text-link-hover underline-offset-8 transition-all ease-in;
+    }
+    h1 {
+        @apply relative mb-2 flex gap-5 text-3xl font-black leading-[2.5rem] tracking-tight before:inline-block before:text-before before:content-['_>'] md:text-6xl md:leading-[4rem] lg:mb-4 lg:leading-[5.5rem] xl:mb-14 xl:text-[6rem];
+    }
+    h2 {
+        @apply mb-5 text-xl font-semibold leading-[4rem] before:mr-1 before:inline-block before:text-before before:content-['_--'] lg:text-2xl xl:text-[3.5rem];
+    }
+    h3 {
+        @apply mb-2 text-xl font-semibold leading-[2rem] before:mr-1 before:inline-block before:text-before before:content-['_--'];
+    }
+    p,
+    li {
+        @apply text-base md:text-xl xl:text-2xl;
+    }
+    article h1,
+    article h2,
+    article h3,
+    article h4,
+    article h5,
+    article h6,
+    article a {
+        @apply break-words;
+    }
+    article p + h2,
+    article p + h3 {
+        @apply mt-10;
+    }
+    article p + p {
+        @apply mt-5;
+    }
+    article h3 {
+        @apply mb-5 mt-3;
+    }
 }

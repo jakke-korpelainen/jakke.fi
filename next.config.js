@@ -1,8 +1,17 @@
+// @ts-check
+
 /** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig = {
   poweredByHeader: false,
-  optimizeFonts: false,
   images: {
     minimumCacheTTL: 60 * 60,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.ctfassets.net",
+      },
+    ],
   },
 };
+
+module.exports = nextConfig;
