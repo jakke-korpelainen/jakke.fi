@@ -16,7 +16,10 @@ const DEFAULT_WORK_TIME: Duration = {
   minutes: 30,
 };
 
-export function calculatePauseDuration(accumulator: { regular: number; excess?: number }, pause: Pause) {
+export function calculatePauseDuration(
+  accumulator: { regular: number; excess?: number },
+  pause: Pause,
+) {
   let diff = 0;
   let excess = 0;
 
@@ -31,15 +34,21 @@ export function calculatePauseDuration(accumulator: { regular: number; excess?: 
 
   return {
     regular: accumulator.regular + diff,
-    excess: shouldCalculateExcess ? (accumulator?.excess ?? 0) + excess : accumulator.excess,
+    excess: shouldCalculateExcess
+      ? (accumulator?.excess ?? 0) + excess
+      : accumulator.excess,
   };
 }
 
 export const calculateClockOut = ({ startTime, pauses }: TimeState) => {
   // sum up breaks
   const calculatedPauses = {
-    unpaid: pauses.filter((p) => p.paid === false).reduce(calculatePauseDuration, { regular: 0, excess: undefined }),
-    paid: pauses.filter((p) => p.paid === true).reduce(calculatePauseDuration, { regular: 0, excess: 0 }),
+    unpaid: pauses
+      .filter((p) => p.paid === false)
+      .reduce(calculatePauseDuration, { regular: 0, excess: undefined }),
+    paid: pauses
+      .filter((p) => p.paid === true)
+      .reduce(calculatePauseDuration, { regular: 0, excess: 0 }),
   };
 
   const baseWorkTime = add(startTime, DEFAULT_WORK_TIME);
