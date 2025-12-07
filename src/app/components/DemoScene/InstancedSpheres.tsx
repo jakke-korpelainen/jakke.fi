@@ -1,38 +1,27 @@
 import { useSphere } from "@react-three/cannon";
-import { useMemo, useRef } from "react";
-import { Color, InstancedMesh } from "three";
+import { useRef } from "react";
+import { InstancedMesh, TextureLoader } from "three";
+import { useLoader } from "@react-three/fiber";
 
-import { colors } from ".";
-
-const DEFAULT_SPHERE_COUNT = 5;
+const DEFAULT_SPHERE_COUNT = 8;
+const IMAGE_SRC = "/face_2024.jpg";
+const SIZE = 0.5;
 
 export function InstancedSpheres({ number = DEFAULT_SPHERE_COUNT }) {
-  const size = 0.5;
+  const texture = useLoader(TextureLoader, IMAGE_SRC);
   const [ref] = useSphere(
     (index) => ({
-      args: [size],
+      args: [SIZE],
       mass: 1,
       position: [Math.random() - 0.5, -Math.random() - 5, index * 2],
     }),
     useRef<InstancedMesh>(null),
   );
-  const sphereColors = useMemo(() => {
-    const array = new Float32Array(number * 3);
-    const color = new Color();
-    for (let i = 0; i < number; i++)
-      color
-        .set(colors.white)
-        .convertSRGBToLinear()
-        .toArray(array, i * 3);
-    return array;
-  }, [number]);
 
   return (
     <instancedMesh ref={ref} castShadow receiveShadow args={[undefined, undefined, number]}>
-      <sphereGeometry args={[size, 16, 16]}>
-        <instancedBufferAttribute attach="attributes-color" args={[sphereColors, 3]} />
-      </sphereGeometry>
-      <meshPhongMaterial />
+      <sphereGeometry args={[SIZE, 16, 16]}/>
+      <meshPhongMaterial emissive="teal" emissiveIntensity={0.5} map={texture} />
     </instancedMesh>
   );
 }
