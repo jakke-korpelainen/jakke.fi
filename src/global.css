@@ -10,7 +10,7 @@
     @apply text-link-hover underline-offset-8;
   }
   h1 {
-    @apply mb-8 text-6xl font-black leading-[5.5rem] tracking-tight antialiased before:mr-4 before:inline-block before:text-before before:content-['_>'] xl:mb-14 xl:text-[6rem] max:mb-20;
+    @apply mb-4 text-6xl font-black leading-[5.5rem] tracking-tight antialiased before:mr-4 before:inline-block before:text-before before:content-['_>'] xl:mb-14 xl:text-[6rem] max:mb-20;
   }
   h2 {
     @apply mb-2 mb-5 text-4xl font-semibold leading-[4rem] antialiased before:mr-1 before:inline-block before:text-before before:content-['_--'] xl:text-[3.5rem];

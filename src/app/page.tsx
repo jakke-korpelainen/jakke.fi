@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 const TwoColumn = ({ heading, children, className, row = true }: TwoColumnProps) => (
   <div
-    className={clsx("flex border-b-2 border-before/[0.1] pb-10 last-of-type:border-0", {
+    className={clsx("flex border-b-2 border-before/[0.1] pb-5 last-of-type:border-0 last-of-type:pb-0 xl:pb-10", {
       ["flex-col xl:flex-row"]: row,
       ["flex-col"]: !row,
     })}
@@ -33,17 +33,10 @@ export default function Page() {
   return (
     <div className="grow">
       <h1>
-        <WaveText emojiIndex={1} words={["Hello"]} />
+        <WaveText words={["Hello", "..."]} wordClasses={[{ index: 1, class: "text-gray-900 px-1" }]} />
       </h1>
 
       <div className="flex flex-col gap-5">
-        <TwoColumn heading="what">
-          <p>
-            Not sure what you're looking for in here, but if you're interested; You can find my full professional
-            working history in <a href="https://linkedin.com/in/jakke-korpelainen">LinkedIn</a>, and some of my
-            public/spare-time projects in <a href="https://github.com/jakke-korpelainen">GitHub</a>.
-          </p>
-        </TwoColumn>
         <TwoColumn className="flex items-center gap-4 sm:gap-10 lg:items-start lg:gap-0" heading="who">
           <Image
             width={240}
@@ -54,6 +47,13 @@ export default function Page() {
           />
           <p>
             My name is Jakke Korpelainen, I'm a full-stack developer (with frontend focus) based in HELSINKI, FINLAND.
+          </p>
+        </TwoColumn>
+        <TwoColumn heading="what">
+          <p>
+            Not sure what you're looking for in here, but if you're interested; You can find my full professional
+            working history in <a href="https://linkedin.com/in/jakke-korpelainen">LinkedIn</a>, and some of my
+            public/spare-time projects in <a href="https://github.com/jakke-korpelainen">GitHub</a>.
           </p>
         </TwoColumn>
         <TwoColumn row={false} heading="where">

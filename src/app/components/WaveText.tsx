@@ -1,17 +1,10 @@
 import clsx from "clsx";
 
-interface IWaveProps {
-  words: string[];
-  emojiIndex: number;
-}
-
 const wordClasses =
   "animate-wave inline-block select-none bg-clip-text text-transparent bg-gradient-to-t from-before to-link-normal";
-const emojiClasses =
-  "text-6xl  bg-clip-text text-transparent bg-gradient-to-r from-link-normal/[0.25] to-link-hover/[0.25] ";
 
 const getDelay = (index: number) => {
-  return `${(index + 1) * 100 * Math.PI}ms`;
+  return `${Math.max(index, 1) * 100 * Math.PI}ms`;
 };
 
 const getKey = (word: string | number, wordIndex: string | number, charIndex?: string | number) => {
@@ -23,11 +16,11 @@ const getKey = (word: string | number, wordIndex: string | number, charIndex?: s
 
 interface WaveCharProps {
   char: string;
-  index: number;
+  charIndex: number;
   className?: string;
 }
-const WaveChar = ({ char, index, className }: WaveCharProps) => (
-  <span style={{ animationDelay: getDelay(index) }} className={clsx(wordClasses, className)}>
+const WaveChar = ({ char, charIndex, className }: WaveCharProps) => (
+  <span style={{ animationDelay: getDelay(charIndex) }} className={clsx(wordClasses, className)}>
     {char}
   </span>
 );
@@ -39,15 +32,26 @@ interface WaveWordProps {
 }
 export const WaveWord = ({ word, wordIndex, className }: WaveWordProps) => {
   return [...word].map((char, charIndex) => (
-    <WaveChar className={className} key={getKey(word, wordIndex, charIndex)} index={charIndex} char={char} />
+    <WaveChar className={className} key={getKey(word, wordIndex, charIndex)} charIndex={charIndex} char={char} />
   ));
 };
 
-export const WaveText = ({ words, emojiIndex }: IWaveProps) => (
+interface IWaveProps {
+  words: string[];
+  wordClasses?: { index: number; class: string }[];
+}
+
+export const WaveText = ({ words, wordClasses }: IWaveProps) => (
   <>
     {words.map((word, index) => (
-      <span key={getKey(word, index)} className="mr-2 bg-clip-content">
-        <WaveWord className={clsx({ [emojiClasses]: emojiIndex === index })} wordIndex={index} word={word} />
+      <span key={getKey(word, index)} className="mr-2">
+        <WaveWord
+          className={clsx({
+            [wordClasses?.find((c) => c.index === index)?.class ?? ""]: !!wordClasses?.find((c) => c.index === index),
+          })}
+          wordIndex={index}
+          word={word}
+        />
       </span>
     ))}
   </>
