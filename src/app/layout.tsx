@@ -5,7 +5,7 @@ import { Suspense } from "react";
 
 import { karla } from "@/fonts";
 
-import Cube from "./components/Cube";
+import DemoScene from "./components/DemoScene";
 
 const Column = ({ children, className }: { children: React.ReactNode; className?: string }) => {
   return <div className={clsx("w-full lg:w-6/12", className)}>{children}</div>;
@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex min-h-screen flex-col bg-[#121217] lg:flex-row lg:bg-transparent">
           <Column className="relative hidden bg-black lg:flex">
             <Suspense fallback={<Loading />}>
-              <Cube />
+              <DemoScene />
             </Suspense>
           </Column>
           <Column className="min-h-screen bg-gradient-to-b from-[#121217] to-[#262a2b] px-5 py-10 text-white sm:px-10 xl:py-20">
