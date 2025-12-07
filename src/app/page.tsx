@@ -32,8 +32,8 @@ const TwoColumn = ({ heading, children, className, row = true }: TwoColumnProps)
 export default function Page() {
   return (
     <div className="grow">
-      <h1>
-        <WaveText words={["Hello", "..."]} wordClasses={[{ index: 1, class: "text-gray-900 px-1" }]} />
+      <h1 title="Kinda funky, innit?">
+        <WaveText words={["Hello!"]} />
       </h1>
 
       <div className="flex flex-col gap-5">
