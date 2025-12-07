@@ -9,12 +9,10 @@ export async function BlogPostList({ tag }: { tag?: string }) {
   const filteredItems = tag ? items.filter((item) => item.tags.includes(tag)) : items;
 
   return (
-    <>
-      <h2>Articles</h2>
-
+    <div>
       {tag && (
         <>
-          <p className="mb-5">
+          <p className="mb-10">
             Filtering with tag: <span className="ml-2 font-mono text-base uppercase">{tag}</span>{" "}
             <Link className="text-base no-underline" href="/blog">
               ❌
@@ -26,6 +24,6 @@ export async function BlogPostList({ tag }: { tag?: string }) {
       {filteredItems.map((item) => (
         <BlogPostListItem key={item.sys.id} item={item} />
       ))}
-    </>
+    </div>
   );
 }
