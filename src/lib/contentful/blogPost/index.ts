@@ -1,4 +1,5 @@
 import { DEFAULT_LOCALE } from "@/lib/locale";
+
 import { fetchContentfulGraphQL } from "..";
 import { ContentfulCollection, ContentfulSys } from "../types";
 import { QUERY_ALL_BLOG_POST, QUERY_BLOG_POST_BY_SLUG } from "./queries";

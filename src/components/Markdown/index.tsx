@@ -1,6 +1,7 @@
 "use client";
 
 import ReactMarkdown, { Components } from "react-markdown";
+
 import { Code } from "./Code";
 
 const components: Partial<Components> = {

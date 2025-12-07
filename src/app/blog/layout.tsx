@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+
 import { ScrollToTop } from "@/components/ScrollToTop";
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
