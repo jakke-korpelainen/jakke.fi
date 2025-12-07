@@ -1,29 +1,30 @@
 import clsx from "clsx";
 import Link from "next/link";
 
-import { queryAllBlogPosts } from "@/lib/contentful/blogPost";
+import { queryAllBlogPosts, queryAllBlogPostsByTag } from "@/lib/contentful/blogPost";
 
 import { BlogPostListItem } from "./BlogPostListItem";
+import { BlogPostTagQueryParams } from "@/lib/contentful/blogPost/queries";
 
 const DEFAULT_PAGE_SIZE = 15;
 
 const classes = {
+  link: "rounded bg-gray-800 px-4 py-2 text-white",
   button: {
     disabled: "pointer-events-none select-none opacity-50",
   },
 };
 
-export async function BlogPostList({
-  tag,
-  skip = 0,
-  limit = DEFAULT_PAGE_SIZE,
-}: {
-  tag?: string;
-  skip?: number;
-  limit?: number;
-}) {
-  const { total, items } = (await queryAllBlogPosts({ skip, limit })) ?? { total: 0, items: [] };
-  const filteredItems = tag ? items.filter((item) => item.tags.includes(tag)) : items;
+async function getFilteredBlogPosts({ tag, skip, limit }: Partial<BlogPostTagQueryParams>) {
+  if (tag) {
+    return await queryAllBlogPostsByTag({ tag, skip, limit });
+  }
+  return await queryAllBlogPosts({ skip, limit });
+}
+
+export async function BlogPostList({ tag, skip = 0, limit = DEFAULT_PAGE_SIZE }: Partial<BlogPostTagQueryParams>) {
+  const { total, items } = (await getFilteredBlogPosts({ tag, skip, limit })) ?? { total: 0, items: [] };
+
   const totalPages = Math.ceil(total / limit);
   const currentPage = Math.floor(skip / limit) + 1;
 
@@ -42,11 +43,10 @@ export async function BlogPostList({
           </p>
         </>
       )}
-      {filteredItems.length === 0 && <p>Sorry, no articles found.</p>}
-      {filteredItems.map((item) => (
+      {total === 0 && <p>Sorry, no articles found.</p>}
+      {items.map((item) => (
         <BlogPostListItem key={item.sys.id} item={item} />
       ))}
-
       {total > limit && (
         <div className="flex items-center justify-between">
           <Link
@@ -54,7 +54,7 @@ export async function BlogPostList({
               pathname: "/blog",
               query: { tag, skip: Math.max(0, skip - limit), limit },
             }}
-            className={clsx(`rounded bg-gray-800 px-4 py-2 text-white`, { [classes.button.disabled]: isPrevDisabled })}
+            className={clsx(classes.link, { [classes.button.disabled]: isPrevDisabled })}
           >
             Previous
           </Link>
@@ -63,7 +63,7 @@ export async function BlogPostList({
           </span>
           <Link
             href={{ pathname: "/blog", query: { tag, skip: skip + limit, limit } }}
-            className={clsx(`rounded bg-gray-800 px-4 py-2 text-white`, { [classes.button.disabled]: isNextDisabled })}
+            className={clsx(classes.link, { [classes.button.disabled]: isNextDisabled })}
           >
             Next
           </Link>
