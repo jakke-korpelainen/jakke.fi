@@ -18,7 +18,7 @@ export const WorkTime = () => {
 
   const onStartChange = (value: string) => dispatch({ type: "SET_START_TIME", value });
 
-  const pauses = state.pauses.toSorted((a, b) => sortDateDesc(a.startTime, b.startTime));
+  const pauses = [...state.pauses].sort((a, b) => sortDateDesc(a.startTime, b.startTime));
 
   return (
     <div className="flex grow flex-col text-white lg:flex-row">
