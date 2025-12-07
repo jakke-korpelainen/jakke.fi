@@ -67,14 +67,14 @@ export default function Page() {
               <p>My name is Jakke Korpelainen, I'm a full-stack developer based in Helsinki, Finland.</p>
             </TwoColumn>
             <TwoColumn heading="what">
-              <ul className="inline-flex gap-5">
+              <ul className="inline-flex flex-col gap-5 sm:flex-row">
+                <li>
+                  <Link href="/blog">Blog</Link>
+                </li>
                 <li>
                   <Link target="_blank" href="/curriculum-vitae.pdf">
                     Curriculum Vitae
                   </Link>
-                </li>
-                <li>
-                  <Link href="/blog">Blog</Link>
                 </li>
                 <li>
                   <a target="_blank" href="https://linkedin.com/in/jakke-korpelainen">

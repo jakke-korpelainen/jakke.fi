@@ -8,11 +8,11 @@ const Tag = ({ tag }: { tag: string }) => <span key={crypto.randomUUID()}>{tag}<
 
 export function Tags({ tags, options = { links: true } }: { tags: string[]; options?: TagOptions }) {
   return (
-    <div className="inline-flex flex-wrap items-center gap-5 font-mono uppercase">
-      <span className="text-base font-medium">Tags:</span>
+    <div className="inline-flex flex-wrap items-center gap-2 font-mono text-sm uppercase sm:gap-5 md:text-base">
+      <span className="font-medium">Tags:</span>
       {tags.map((tag) =>
         options.links ? (
-          <Link key={`linked-${tag}`} href={`/blog?tag=${tag}`}>
+          <Link className="text-link-darker no-underline" key={`linked-${tag}`} href={`/blog?tag=${tag}`}>
             <Tag tag={tag} />
           </Link>
         ) : (
