@@ -1,8 +1,12 @@
-import { DEFAULT_LOCALE } from "@/lib/locale";
-
 import { fetchContentfulGraphQL } from "..";
-import { ContentfulCollection, ContentfulSys } from "../types";
-import { QUERY_ALL_BLOG_POST, QUERY_BLOG_POST_BY_SLUG } from "./queries";
+import type { ContentfulCollection, ContentfulQueryParams, ContentfulSys } from "../types";
+import {
+  BlogPostSlugQueryParams,
+  BlogPostTagQueryParams,
+  QUERY_ALL_BLOG_POST,
+  QUERY_ALL_BY_BLOG_POST_TAG,
+  QUERY_BLOG_POST_BY_SLUG,
+} from "./queries";
 
 export interface BlogPost extends ContentfulSys {
   /**
@@ -37,14 +41,20 @@ export interface BlogPostCollection {
   blogPostCollection: ContentfulCollection<BlogPost>;
 }
 
-export async function queryAllBlogPosts(locale: string = DEFAULT_LOCALE) {
-  const { data: entries } = await fetchContentfulGraphQL<BlogPostCollection>(QUERY_ALL_BLOG_POST(locale));
-
-  return entries?.blogPostCollection?.items;
+export async function queryAllBlogPosts(options: Partial<ContentfulQueryParams>) {
+  const query = QUERY_ALL_BLOG_POST({ ...options });
+  const { data: entries } = await fetchContentfulGraphQL<BlogPostCollection>(query);
+  return entries?.blogPostCollection;
 }
 
-export async function queryBlogPostBySlug(slug: string, locale: string = DEFAULT_LOCALE) {
-  const { data: entries } = await fetchContentfulGraphQL<BlogPostCollection>(QUERY_BLOG_POST_BY_SLUG(slug, locale));
+export async function queryAllBlogPostsByTag(options: BlogPostTagQueryParams) {
+  const query = QUERY_ALL_BY_BLOG_POST_TAG({ ...options });
+  const { data: entries } = await fetchContentfulGraphQL<BlogPostCollection>(query);
+  return entries?.blogPostCollection;
+}
 
+export async function queryBlogPostBySlug(options: BlogPostSlugQueryParams) {
+  const query = QUERY_BLOG_POST_BY_SLUG({ ...options });
+  const { data: entries } = await fetchContentfulGraphQL<BlogPostCollection>(query);
   return entries?.blogPostCollection?.items?.[0];
 }
