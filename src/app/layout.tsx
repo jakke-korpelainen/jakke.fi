@@ -1,4 +1,5 @@
 import "@/global.css";
+
 import { GoogleAnalytics } from "@next/third-parties/google";
 import clsx from "clsx";
 
