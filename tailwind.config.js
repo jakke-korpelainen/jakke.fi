@@ -7,11 +7,21 @@ import { fontFamily } from "tailwindcss/defaultTheme";
 export const content = ["./src/**/*.{js,ts,jsx,tsx}"];
 export const theme = {
   screens: {
-    sm: "576px",
+    xs: "0px",
+    sm: "600px",
     md: "960px",
-    lg: "1440px",
-    xl: "1920px",
-    max: "2400px",
+    lg: "1280px",
+    xl: "1600px",
+  },
+  container: {
+    center: true,
+    padding: "2rem",
+    screens: {
+      sm: "600px",
+      md: "960px",
+      lg: "1280px",
+      xl: "1600px",
+    },
   },
   fontSize: {
     xxs: "0.625rem",
@@ -60,7 +70,7 @@ export const theme = {
       // Be sure to update these if you change your fonts.
       // TODO: Could these be imported from src/lib/fonts.ts? The exported font objects include a variable property.
       sans: [`var(--font-sans)`, ...fontFamily.sans],
-      mono: [`var(--font-mono)`, ...fontFamily.sans],
+      mono: [`var(--font-mono)`, ...fontFamily.mono],
       heading: [`var(--font-heading)`, ...fontFamily.sans],
     },
   },
