@@ -10,7 +10,7 @@
     "@react-three/postprocessing": "^3.0.4",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
-    "next": "^15.5.6",
+    "next": "^15.5.9",
     "postprocessing": "^6.37.8",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
