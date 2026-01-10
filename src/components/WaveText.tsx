@@ -30,7 +30,7 @@ const WaveChar = ({ char, charIndex, className }: WaveCharProps) => (
         "0 0 0.5rem rgba(255,255,255, var(--text-shadow)), 0 0 2rem rgba(255,255,255, var(--text-shadow))",
       animationDelay: getDelay(charIndex),
     }}
-    className={clsx(wordClasses, className, { ["w-4"]: char === " " })}
+    className={clsx(wordClasses, className, { "w-4": char === " " })}
   >
     {char}
   </span>

@@ -13,7 +13,7 @@ import {
   radioLabelClass,
 } from "./classes";
 import { MAXIMUM_PAID_BREAK } from "./helper";
-import { Pause } from "./reducer/types";
+import type { Pause } from "./reducer/types";
 
 interface TimeInputProps extends Pick<Pause, "id" | "startTime"> {
   onStartChange: (value: string) => void;
@@ -86,22 +86,20 @@ export const TimeInput = ({
             />
           </div>
           {endTime && (
-            <>
-              <div className={inputGroupClass}>
-                <label className={labelClass} htmlFor={`${id}-end`}>
-                  End time
-                </label>
-                <input
-                  min="06:00"
-                  max="20:00"
-                  type="time"
-                  id={`${id}-end`}
-                  className={inputClass}
-                  onChange={(e) => onEndChange?.(e.target.value)}
-                  value={endTimeValue ?? "00:00"}
-                />
-              </div>
-            </>
+            <div className={inputGroupClass}>
+              <label className={labelClass} htmlFor={`${id}-end`}>
+                End time
+              </label>
+              <input
+                min="06:00"
+                max="20:00"
+                type="time"
+                id={`${id}-end`}
+                className={inputClass}
+                onChange={(e) => onEndChange?.(e.target.value)}
+                value={endTimeValue ?? "00:00"}
+              />
+            </div>
           )}
         </div>
       </div>
@@ -145,7 +143,7 @@ export const TimeInput = ({
             </div>
           </div>
           <div className="my-5 flex flex-col lg:my-0">
-            <span className={clsx({ ["mb-2"]: paid && excess }, labelClass)}>
+            <span className={clsx({ "mb-2": paid && excess }, labelClass)}>
               Duration
             </span>
 

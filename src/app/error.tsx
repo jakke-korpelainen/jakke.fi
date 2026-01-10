@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Error() {
+export default function ErrorPage() {
   return (
     <div className="flex w-full grow flex-col space-y-10 bg-gradient-to-b from-[#121217] to-[#262a2b] p-5 text-white sm:p-10">
       <header className="container mx-auto">

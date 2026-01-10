@@ -1,7 +1,7 @@
-import { PlaneProps, usePlane } from "@react-three/cannon";
+import { type PlaneProps, usePlane } from "@react-three/cannon";
 import { useTexture } from "@react-three/drei";
 import { useRef } from "react";
-import { Mesh, MeshBasicMaterial, MeshPhongMaterial } from "three";
+import type { Mesh, MeshBasicMaterial, MeshPhongMaterial } from "three";
 
 type PlaneArgs =
   | [

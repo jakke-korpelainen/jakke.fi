@@ -1,7 +1,7 @@
 import { useSphere } from "@react-three/cannon";
 import { useTexture } from "@react-three/drei";
 import { useRef } from "react";
-import { InstancedMesh } from "three";
+import type { InstancedMesh } from "three";
 
 import { COLORS } from ".";
 

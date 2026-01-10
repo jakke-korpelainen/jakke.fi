@@ -1,17 +1,16 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { BlogPosting, WithContext } from "schema-dts";
-
+import type { BlogPosting, WithContext } from "schema-dts";
 import { Tags } from "@/components/Blog/Tags";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { Markdown } from "@/components/Markdown";
-import { BlogPost, queryBlogPostBySlug } from "@/lib/contentful/blogPost";
+import { type BlogPost, queryBlogPostBySlug } from "@/lib/contentful/blogPost";
 import { formatDateString } from "@/lib/date";
 
 interface BlogPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 const createBlogPostingJsonLd = (
@@ -36,7 +35,7 @@ const createBlogPostingJsonLd = (
 export async function generateMetadata({
   params,
 }: BlogPageProps): Promise<Metadata> {
-  const { slug } = params ?? {};
+  const { slug } = (await params) ?? {};
   const { title } = (await queryBlogPostBySlug({ slug, limit: 1 })) ?? {};
   return {
     title: `${title} - jakke.fi`,
@@ -57,6 +56,7 @@ export default async function BlogPage({ params }: Readonly<BlogPageProps>) {
     <>
       <script
         type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: suppress
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Breadcrumb

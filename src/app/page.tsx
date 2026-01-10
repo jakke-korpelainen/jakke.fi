@@ -1,12 +1,12 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import { Column } from "@/components/Column";
 import DemoScene from "@/components/DemoScene";
-import { WaveText } from "@/components/WaveText";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { TwoColumn } from "@/components/TwoColumn";
+import { WaveText } from "@/components/WaveText";
 
 export const metadata: Metadata = {
   title: "Jakke Korpelainen",
@@ -59,6 +59,7 @@ export default function Page() {
                   <a
                     target="_blank"
                     href="https://linkedin.com/in/jakke-korpelainen"
+                    rel="noopener"
                   >
                     LinkedIn
                   </a>
@@ -67,19 +68,24 @@ export default function Page() {
                   <a
                     target="_blank"
                     href="https://github.com/jakke-korpelainen"
+                    rel="noopener"
                   >
                     GitHub
                   </a>
                 </li>
                 <li>
-                  <a target="_blank" href="https://bsky.app/profile/jakke.fi">
+                  <a
+                    target="_blank"
+                    href="https://bsky.app/profile/jakke.fi"
+                    rel="noopener"
+                  >
                     Bluesky
                   </a>
                 </li>
               </ul>
             </TwoColumn>
             <TwoColumn heading="where">
-              <a href="https://op.fi" target="_blank">
+              <a href="https://op.fi" target="_blank" rel="noopener">
                 <Image
                   priority
                   className="object-fill inline-flex"

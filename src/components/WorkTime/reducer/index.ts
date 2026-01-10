@@ -1,5 +1,5 @@
 import { add, parse, startOfDay } from "date-fns";
-import { TimeActions, TimeState } from "./types";
+import type { TimeActions, TimeState } from "./types";
 
 export function reducer(state: TimeState, action: TimeActions): TimeState {
   switch (action.type) {

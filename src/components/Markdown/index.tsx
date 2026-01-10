@@ -1,7 +1,6 @@
 "use client";
 
-import ReactMarkdown, { Components } from "react-markdown";
-
+import ReactMarkdown, { type Components } from "react-markdown";
 import { Code } from "./Code";
 
 const components: Partial<Components> = {
@@ -14,8 +13,8 @@ interface MarkdownProps {
 
 export function Markdown({ children }: MarkdownProps) {
   return (
-    <ReactMarkdown className="prose relative" components={components}>
-      {children}
-    </ReactMarkdown>
+    <div className="prose relative">
+      <ReactMarkdown components={components}>{children}</ReactMarkdown>
+    </div>
   );
 }

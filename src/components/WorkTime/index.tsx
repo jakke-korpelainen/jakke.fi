@@ -2,10 +2,9 @@
 
 import clsx from "clsx";
 import { useReducer } from "react";
-
 import { Column } from "../Column";
-import { buttonClass, columnClass } from "./classes";
 import { ClockOut } from "./ClockOut";
+import { buttonClass, columnClass } from "./classes";
 import { sortDateDesc } from "./helper";
 import { initialState, reducer } from "./reducer";
 import { TimeInput } from "./TimeInput";
@@ -65,7 +64,7 @@ export const WorkTime = () => {
             />
           </div>
         ))}
-        <div className={clsx({ ["mt-10"]: pauses.length > 0 })}>
+        <div className={clsx({ "mt-10": pauses.length > 0 })}>
           <button
             className={buttonClass}
             type="button"

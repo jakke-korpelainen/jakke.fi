@@ -1,4 +1,4 @@
-import { ContentfulQueryError, ContentfulResult } from "./types";
+import type { ContentfulQueryError, ContentfulResult } from "./types";
 
 export class ContentfulError extends Error {
   constructor(name: string, description: string) {
@@ -8,7 +8,12 @@ export class ContentfulError extends Error {
 
 const collectLocations = (locations: { line: number; column: number }[]) =>
   locations
-    ? locations.map((location, index) => `\r\n  ${index}: line ${location.line} column ${location.column}`).join("")
+    ? locations
+        .map(
+          (location, index) =>
+            `\r\n  ${index}: line ${location.line} column ${location.column}`,
+        )
+        .join("")
     : "";
 
 const collectErrorMessage = (error: ContentfulQueryError) =>

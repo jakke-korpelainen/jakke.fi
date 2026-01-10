@@ -32,10 +32,12 @@ export function Embed({ children }: { children: string }) {
     return (
       <div
         className={classes.youtube.wrapper}
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: suppress
         dangerouslySetInnerHTML={{ __html: children }}
       />
     );
   }
 
+  // biome-ignore lint/security/noDangerouslySetInnerHtml: suppress
   return <div dangerouslySetInnerHTML={{ __html: children }} />;
 }

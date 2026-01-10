@@ -5,6 +5,7 @@ const SIZE = 64;
 export function LoadingSpinner() {
   return (
     <svg className="animate-spin" height={SIZE} width={SIZE}>
+      <title>Loading</title>
       <polygon
         points={`1,${SIZE / 2} ${SIZE / 2},1 ${SIZE / 2},${SIZE / 2}`}
         style={{

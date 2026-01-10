@@ -2,7 +2,7 @@ import { useSphere } from "@react-three/cannon";
 import { Sphere, useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { createRef } from "react";
-import { Mesh } from "three";
+import type { Mesh } from "three";
 
 const cursor = createRef<Mesh>();
 

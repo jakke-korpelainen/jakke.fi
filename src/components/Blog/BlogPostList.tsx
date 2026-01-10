@@ -1,12 +1,10 @@
 import clsx from "clsx";
 import Link from "next/link";
-
 import {
   queryAllBlogPosts,
   queryAllBlogPostsByTag,
 } from "@/lib/contentful/blogPost";
-import { BlogPostTagQueryParams } from "@/lib/contentful/blogPost/queries";
-
+import type { BlogPostTagQueryParams } from "@/lib/contentful/blogPost/queries";
 import { BlogPostListItem } from "./BlogPostListItem";
 
 const DEFAULT_PAGE_SIZE = 15;
@@ -49,15 +47,13 @@ export async function BlogPostList({
   return (
     <div className="space-y-10">
       {tag && (
-        <>
-          <p className="mb-10">
-            Filtering with tag:{" "}
-            <span className="ml-2 font-mono text-base uppercase">{tag}</span>{" "}
-            <Link className="text-base no-underline" href="/blog">
-              ❌
-            </Link>
-          </p>
-        </>
+        <p className="mb-10">
+          Filtering with tag:{" "}
+          <span className="ml-2 font-mono text-base uppercase">{tag}</span>{" "}
+          <Link className="text-base no-underline" href="/blog">
+            ❌
+          </Link>
+        </p>
       )}
       {total === 0 && <p>Sorry, no articles found.</p>}
       {items.map((item) => (

@@ -4,9 +4,8 @@ import clsx from "clsx";
 import { format, formatDistanceStrict, isPast } from "date-fns";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
 import { calculateClockOut } from "./helper";
-import { TimeState } from "./reducer/types";
+import type { TimeState } from "./reducer/types";
 
 const CannotCompute = () => (
   <>
@@ -54,7 +53,7 @@ export const ClockOut = ({ ...state }: TimeState) => {
         </p>
       );
     }
-  } catch (err) {
+  } catch (_err) {
     clockOutEl = <CannotCompute />;
   }
 
@@ -62,7 +61,7 @@ export const ClockOut = ({ ...state }: TimeState) => {
     <div className="relative flex w-full grow flex-col items-center overflow-hidden">
       <Image
         className={clsx(
-          { ["animate-bounce"]: isPastClockOutDate },
+          { "animate-bounce": isPastClockOutDate },
           "absolute -bottom-20 left-20 sm:-bottom-40 md:-bottom-[14rem] md:-left-16 md:scale-50 lg:bottom-[27vh] lg:left-56 lg:scale-100 xl:bottom-[27vh] xl:left-52",
         )}
         alt="Aggressive Goose looking at the time"

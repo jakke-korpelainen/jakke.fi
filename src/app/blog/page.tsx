@@ -1,9 +1,8 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
-
 import { BlogPostList } from "@/components/Blog/BlogPostList";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Blog Articles - jakke.fi",
@@ -20,8 +19,8 @@ interface BlogParams {
 export default async function BlogIndex({ searchParams }: BlogParams) {
   const { tag, skip, limit } = searchParams ?? {};
 
-  const skipNumber = skip ? parseInt(skip) : undefined;
-  const limitNumber = limit ? parseInt(limit) : undefined;
+  const skipNumber = skip ? parseInt(skip, 10) : undefined;
+  const limitNumber = limit ? parseInt(limit, 10) : undefined;
 
   return (
     <div>

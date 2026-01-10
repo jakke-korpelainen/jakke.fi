@@ -21,6 +21,7 @@ const useClipboard = () => {
   return [copy, text] as const;
 };
 
+// biome-ignore lint/suspicious/noExplicitAny: suppress
 export function Code({ className, children }: any) {
   const [copy, text] = useClipboard();
 

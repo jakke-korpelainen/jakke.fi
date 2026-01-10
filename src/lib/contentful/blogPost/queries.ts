@@ -1,6 +1,5 @@
 import { DEFAULT_LOCALE } from "@/lib/locale";
-
-import { ContentfulQueryParams } from "../types";
+import type { ContentfulQueryParams } from "../types";
 import { BLOG_PAGE_FIELDS } from "./fields";
 
 export const QUERY_ALL_BLOG_POST = ({
@@ -38,7 +37,8 @@ export const QUERY_ALL_BY_BLOG_POST_TAG = ({
   }
 `;
 
-export interface BlogPostSlugQueryParams extends Partial<ContentfulQueryParams> {
+export interface BlogPostSlugQueryParams
+  extends Partial<ContentfulQueryParams> {
   slug: string;
 }
 

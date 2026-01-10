@@ -1,8 +1,8 @@
-// @ts-check
+import type { NextConfig } from "next";
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   poweredByHeader: false,
+  reactCompiler: true,
   images: {
     minimumCacheTTL: 60 * 60,
     remotePatterns: [
@@ -14,4 +14,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;

@@ -1,6 +1,5 @@
-import { add, differenceInMinutes, Duration } from "date-fns";
-
-import { Pause, TimeState } from "./reducer/types";
+import { add, type Duration, differenceInMinutes } from "date-fns";
+import type { Pause, TimeState } from "./reducer/types";
 
 export const sortDateDesc = (a: Date, b: Date) => {
   return a.valueOf() - b.valueOf();
