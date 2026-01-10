@@ -43,7 +43,7 @@ export async function generateMetadata({
 }
 
 export default async function BlogPage({ params }: Readonly<BlogPageProps>) {
-  const { slug } = params ?? {};
+  const { slug } = (await params) ?? {};
   const blogPost = await queryBlogPostBySlug({ slug, limit: 1 });
 
   if (!blogPost) {

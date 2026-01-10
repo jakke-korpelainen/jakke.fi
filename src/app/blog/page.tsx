@@ -9,15 +9,15 @@ export const metadata: Metadata = {
 };
 
 interface BlogParams {
-  searchParams: {
+  searchParams: Promise<{
     tag?: string;
     skip?: string;
     limit?: string;
-  };
+  }>;
 }
 
 export default async function BlogIndex({ searchParams }: BlogParams) {
-  const { tag, skip, limit } = searchParams ?? {};
+  const { tag, skip, limit } = (await searchParams) ?? {};
 
   const skipNumber = skip ? parseInt(skip, 10) : undefined;
   const limitNumber = limit ? parseInt(limit, 10) : undefined;
