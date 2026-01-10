@@ -65,13 +65,13 @@
         @apply text-link-hover underline-offset-8 transition-all ease-in;
     }
     h1 {
-        @apply relative mb-2 flex gap-5 text-3xl font-black leading-[2.5rem] tracking-tight before:inline-block before:text-before before:content-['_>'] md:text-6xl md:leading-[4rem] lg:mb-4 lg:leading-[5.5rem] xl:mb-14 xl:text-[6rem];
+        @apply relative mb-2 flex gap-5 text-3xl font-black leading-10 tracking-tight before:inline-block before:text-before before:content-['_>'] md:text-6xl md:leading-16 lg:mb-4 lg:leading-22 xl:mb-14 xl:text-[6rem];
     }
     h2 {
-        @apply mb-5 text-xl font-semibold leading-[4rem] before:mr-1 before:inline-block before:text-before before:content-['_--'] lg:text-2xl xl:text-[3.5rem];
+        @apply mb-5 text-xl font-semibold leading-16 before:mr-1 before:inline-block before:text-before before:content-['_--'] lg:text-2xl xl:text-[3.5rem];
     }
     h3 {
-        @apply mb-2 text-xl font-semibold leading-[2rem] before:mr-1 before:inline-block before:text-before before:content-['_--'];
+        @apply mb-2 text-xl font-semibold leading-8 before:mr-1 before:inline-block before:text-before before:content-['_--'];
     }
     p,
     li {
@@ -84,7 +84,7 @@
     article h5,
     article h6,
     article a {
-        @apply break-words;
+        @apply wrap-break-word;
     }
     article p + h2,
     article p + h3 {

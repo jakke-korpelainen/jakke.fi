@@ -5,11 +5,11 @@ import clsx from "clsx";
 
 import { firaCode, karla } from "@/fonts";
 
-export default function RootLayout({
-  children,
-}: {
+interface RootLayoutProps {
   children: React.ReactNode;
-}) {
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body
